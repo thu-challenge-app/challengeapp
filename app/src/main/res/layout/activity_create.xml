@@ -178,6 +178,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_TagWoche" />
 
+    <TextView
+        android:id="@+id/textView_Woche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="wöchentlich"
+        app:layout_constraintStart_toEndOf="@+id/switch_TagWoche"
+        app:layout_constraintTop_toBottomOf="@+id/textView_TagWoche" />
+
+    <TextView
+        android:id="@+id/textView_Tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="täglich"
+        app:layout_constraintEnd_toStartOf="@+id/switch_TagWoche"
+        app:layout_constraintTop_toBottomOf="@+id/textView_TagWoche" />
 
     <Button
         android:id="@+id/button_Speichern"
