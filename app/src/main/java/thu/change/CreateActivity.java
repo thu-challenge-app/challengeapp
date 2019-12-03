@@ -75,66 +75,52 @@ public class CreateActivity extends AppCompatActivity {
         RadioButton Skala_Wert = (RadioButton) findViewById(R.id.radioButton_Wert);
         Switch sTagWoche = (Switch) findViewById(R.id.switch_TagWoche);
 
-        int DB_Maximum;
-        String DB_Challenge="";
-        int DB_Durchschnitt = 0;
-        int DB_Skala = 2;
-        int DB_TagWoche = 1;
-
         if (view.getId() == R.id.button_Speichern) {
-
-
-            if (tChallenge.getText().toString().trim().isEmpty()||tChallenge.equals("")) {
+            // No further processing if no text is given
+            if (tChallenge.getText().toString().trim().isEmpty() || tChallenge.equals("")) {
                 Toast.makeText(this, "Bitte geben Sie einen gültigen Namen ein", Toast.LENGTH_LONG).show();
                 return;
-            } else {
-                DB_Challenge = tChallenge.getText().toString();
+            }
 
-                if (tDurchschnitt.getText().toString().isEmpty()) {
-                    DB_Durchschnitt = 0;
-                } else {
-                    DB_Durchschnitt = Integer.parseInt(tDurchschnitt.getText().toString());
-                }
+            // Create challenge instance
+            Challenge c = new Challenge();
 
-                if (tMaximum.getText().toString().isEmpty()) {
-                    DB_Maximum = 0;
+            // Store challenge name
+            c.setName(tChallenge.getText().toString());
+
+            // Store average if text box is filled
+            if (!tDurchschnitt.getText().toString().isEmpty()) {
+                c.setAverage(Integer.parseInt(tDurchschnitt.getText().toString()));
+            }
+
+            c.setWeekly(sTagWoche.isChecked());
+
+            if (Skala_2.isChecked()) {
+                c.setMaximum(1);
+            } else if (Skala_3.isChecked()) {
+                c.setMaximum(2);
+            } else if (Skala_5.isChecked()) {
+                c.setMaximum(4);
+            } else if (Skala_Wert.isChecked()) {
+                // If text box is not empty, use its value. Use 100 otherwise
+                if (!tMaximum.getText().toString().isEmpty()) {
+                    c.setMaximum(Integer.parseInt(tMaximum.getText().toString()));
                 } else {
-                    DB_Maximum = Integer.parseInt(tMaximum.getText().toString());
-                }
-                if (tDurchschnitt.getText().toString().isEmpty()) {
-                    DB_Durchschnitt = 0;
-                }
-                if (sTagWoche.isChecked()) {
-                    DB_TagWoche = 7;
-                } else {
-                    DB_TagWoche = 1;
-                }
-                if (Skala_2.isChecked()) {
-                    DB_Skala = 2;
-                } else if (Skala_3.isChecked()) {
-                    DB_Skala = 3;
-                } else if (Skala_5.isChecked()) {
-                    DB_Skala = 5;
-                } else if (Skala_Wert.isChecked()) {
-                    DB_Skala = DB_Maximum;
-                    if (DB_Maximum == 0) {
-                        DB_Skala = 100;
-                    }
+                    c.setMaximum(100);
                 }
             }
 
+            // Save new challenge to database
+            DatabaseHelper db = new DatabaseHelper(this);
+            db.addChallenge(c);
 
-            String skala = String.valueOf(DB_Skala);
-            String durchschnitt = String.valueOf((DB_Durchschnitt));
-            Toast.makeText(this, "Challenge: " + DB_Challenge + " Durchschnitt: " + durchschnitt + " Skala: " + skala + " Doku: " + DB_TagWoche, Toast.LENGTH_LONG).show();
+            String skala = String.valueOf(c.getMaximum());
+            String durchschnitt = String.valueOf(c.getAverage());
+            Toast.makeText(this, "Challenge: " + c.getName() + " Durchschnitt: " + durchschnitt + " Skala: " + skala + " Doku: " + (c.getWeekly() ? "7" : "1"), Toast.LENGTH_LONG).show();
             tChallenge.setText("");
             tDurchschnitt.setText("");
             tMaximum.setText("");
         }
-
-
     }
-
-
-
 }
+

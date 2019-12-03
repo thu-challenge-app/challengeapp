@@ -10,7 +10,15 @@ public class Challenge {
     private boolean predefined;
 
     // Constructor
-    public Challenge(){}
+    public Challenge(){
+        id = 0;
+        name = "";
+        maximum = 100;
+        weekly = false;
+        average = 0;
+        active = false;
+        predefined = false;
+    }
     public Challenge(int aId,
                      String aName,
                      int aMaximum,
