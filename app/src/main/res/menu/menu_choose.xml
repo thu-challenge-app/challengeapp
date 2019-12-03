@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/start"
+        android:title="Start Menü"
+        app:showAsAction="never"/>
     <item android:id="@+id/erstellen"
         android:title="Challenge erstellen"
-        app:showAsAction="never"/>
-    <item android:id="@+id/auswahl"
-        android:title="Challenge auswählen"
         app:showAsAction="never"/>
     <item android:id="@+id/editieren"
         android:title="Challenge editieren"
         app:showAsAction="never"/>
-
 </menu>
