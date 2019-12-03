@@ -4,6 +4,193 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CEEBCE"
     tools:context=".CreateActivity">
+
+    <TextView
+        android:id="@+id/textView_Erstelle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Erstelle deine eigene Challenge"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
+
+    <EditText
+        android:id="@+id/editText_Challenge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Erstelle"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <TextView
+        android:id="@+id/textView_Challenge"
+        android:layout_width="86dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="36dp"
+        android:text="Challenge"
+        app:layout_constraintEnd_toStartOf="@+id/editText_Challenge"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Erstelle" />
+
+    <TextView
+        android:id="@+id/textView_TagWoche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Wie regelmäßig willst du die Challenge abhaken?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Challenge" />
+
+    <TextView
+        android:id="@+id/textView_Durchschnitt"
+        android:layout_width="86dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Durchschnitt"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/editText_Durchschnitt"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Maximalwert" />
+
+    <TextView
+        android:id="@+id/textView_Maximalwert"
+        android:layout_width="86dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="20dp"
+        android:text="Ziel"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/editText_Maximum"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_Skala" />
+
+
+    <TextView
+        android:id="@+id/textView_Bewertung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Bewertungssystem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_TagWoche"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editText_Durchschnitt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:inputType="number"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Maximum" />
+
+    <EditText
+        android:id="@+id/editText_Maximum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="number"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_Skala" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_Skala"
+        android:layout_width="261dp"
+        android:layout_height="132dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Bewertung">
+
+        <RadioButton
+            android:id="@+id/radioButton_janein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="onClick_Wert"
+            android:text="ja | nein"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/radioButton_1bis3"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Bewertung"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <RadioButton
+            android:id="@+id/radioButton_1bis3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick_Wert"
+            android:text="gar nicht | ein wenig | komplett"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioButton_janein"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <RadioButton
+            android:id="@+id/radioButton_Skala"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick_Wert"
+            android:text="Skala von 1 - 5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/radioButton_1bis3"
+            app:layout_constraintTop_toBottomOf="@+id/radioButton_1bis3"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <RadioButton
+            android:id="@+id/radioButton_Wert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick_Wert"
+            android:text="Wert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/radioButton_1bis3"
+            app:layout_constraintTop_toBottomOf="@+id/radioButton_Skala"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </RadioGroup>
+
+    <Switch
+        android:id="@+id/switch_TagWoche"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_TagWoche" />
+
+
+    <Button
+        android:id="@+id/button_Speichern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#3F7542"
+        android:onClick="onClick_Speichern"
+        android:text="Speichern"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="@+id/textView_Durchschnitt"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Durchschnitt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
