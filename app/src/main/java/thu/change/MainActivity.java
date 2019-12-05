@@ -14,6 +14,9 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,17 +25,64 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        final FloatingActionButton addFab =(FloatingActionButton) findViewById(R.id.plusButton);
+        FloatingActionButton firstFab = findViewById(R.id.floatingActionButton3);
+        FloatingActionButton secondFab = findViewById(R.id.floatingActionButton4);
+        final LinearLayout firstLayout = findViewById(R.id.firstLayout);
+        final LinearLayout secondLayout = findViewById(R.id.secondLayout);
+        final Animation showButton = AnimationUtils.loadAnimation(this, R.anim.show_button);
+        final Animation hideButton = AnimationUtils.loadAnimation(this, R.anim.hide_button);
+        final Animation showLayout = AnimationUtils.loadAnimation(this, R.anim.show_layout);
+        final Animation hideLayout = AnimationUtils.loadAnimation(this, R.anim.hide_layout);
 
-        //FloatingActionButton fab = findViewById(R.id.fab);
-        //fab.setOnClickListener(new View.OnClickListener() {
-           // @Override
-            //public void onClick(View view) {
-              //  Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-               //         .setAction("Action", null).show();
-           // }
-       // });
+
+        addFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(firstLayout.getVisibility() == View.VISIBLE && secondLayout.getVisibility() == View.VISIBLE){
+                    firstLayout.setVisibility(View.GONE);
+                    secondLayout.setVisibility(View.GONE);
+                    firstLayout.startAnimation(hideLayout);
+                    secondLayout.startAnimation(hideLayout);
+                    addFab.startAnimation(hideButton);
+
+                }
+                else{
+                    firstLayout.setVisibility(View.VISIBLE);
+                    secondLayout.setVisibility(View.VISIBLE);
+                    firstLayout.startAnimation(showLayout);
+                    secondLayout.startAnimation(showLayout);
+                    addFab.startAnimation(showButton);
+
+                }
+            }
+        });
+
+        firstFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firstLayout.setVisibility(View.GONE);
+                secondLayout.setVisibility(View.GONE);
+                firstLayout.startAnimation(hideLayout);
+                secondLayout.startAnimation(hideLayout);
+                addFab.startAnimation(hideButton);
+                Intent intentcreate = new Intent(MainActivity.this, CreateActivity.class);
+                startActivity(intentcreate);
+            }
+        });
+        secondFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firstLayout.setVisibility(View.GONE);
+                secondLayout.setVisibility(View.GONE);
+                firstLayout.startAnimation(hideLayout);
+                secondLayout.startAnimation(hideLayout);
+                addFab.startAnimation(hideButton);
+                Intent intentchoose = new Intent(MainActivity.this, ChooseActivity.class);
+                startActivity(intentchoose);
+            }
+        });
+
     }
 
     @Override
