@@ -30,6 +30,12 @@ public class ChooseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
         DatabaseHelper db = new DatabaseHelper(this);
+        Challenge C1 = new Challenge(0,"Fleischkonsum reduzieren",5,false,0,false,true);
+        Challenge C2 = new Challenge(0,"Weniger Autofahren",100,false,38,false,true);
+        Challenge C3 = new Challenge(0,"Keine Plastiktüten nutzen",2,false,0,false,true);
+        db.addChallenge(C1);
+        db.addChallenge(C2);
+        db.addChallenge(C3);
         ListView mListView = (ListView) findViewById(R.id.ListView);
         List<Challenge> challenges = db.getAllChallenges();
 
