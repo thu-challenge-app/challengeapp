@@ -1,5 +1,6 @@
 package thu.change;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,17 +8,26 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,6 +96,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        ListView main_ListView = (ListView)findViewById(R.id.Main_ListView);
+        List<Challenge> challenges = db.getAllChallenges();
+        List<Challenge> challenge_choosen = new LinkedList<Challenge>();
+        for(int i = 0; i<challenges.size();i++){
+            if(challenges.get(i).getActive()){
+                challenge_choosen.add(challenges.get(i));
+            }
+        }
+
+        ChallengeActiveListAdapter adapter = new ChallengeActiveListAdapter(this,R.layout.adapter_view_main_challenge_layout,challenge_choosen);
+        main_ListView.setAdapter(adapter);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_start, menu);
@@ -110,6 +138,46 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    public void onClick_Eintragen(View v){
+        Intent intentchoose = new Intent(MainActivity.this, EntryActivity.class);
+        startActivity(intentchoose);
+    }
+
+    public void onClick_Graphik(View v){
+        Intent intentchoose = new Intent(MainActivity.this, GraphicActivity.class);
+        startActivity(intentchoose);
+    }
+
+    private class ChallengeActiveListAdapter extends ArrayAdapter<Challenge> {
+
+        private Context mContext;
+        private int mResource;
+
+        public ChallengeActiveListAdapter(Context context, int resource, List<Challenge> objects) {
+            super(context, resource, objects);
+            this.mContext = context;
+            this.mResource = resource;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+            String text = getItem(position).getName();
+
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            convertView = inflater.inflate(mResource, parent, false);
+
+            TextView challenge_text = (TextView) convertView.findViewById(R.id.textView3);
+
+
+            challenge_text.setText(text);
+
+            return convertView;
+
+        }
     }
 
 }
