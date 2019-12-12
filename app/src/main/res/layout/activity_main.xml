@@ -10,7 +10,8 @@
         android:id="@+id/Main_ListView"
         android:layout_width="wrap_content"
         android:layout_height="492dp"
-        android:layout_marginTop="80dp" />
+        android:layout_marginTop="80dp"
+        android:longClickable="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/plusButton"
@@ -47,10 +48,10 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton4"
-            android:backgroundTint="@color/design_default_color_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
+            android:backgroundTint="@color/design_default_color_primary"
+            android:clickable="false"
             app:fabSize="mini"
             app:srcCompat="@android:drawable/ic_menu_view" />
 
@@ -80,10 +81,10 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton3"
-            android:backgroundTint="@color/design_default_color_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
+            android:backgroundTint="@color/design_default_color_primary"
+            android:clickable="false"
             app:fabSize="mini"
             app:srcCompat="@android:drawable/ic_menu_add" />
 

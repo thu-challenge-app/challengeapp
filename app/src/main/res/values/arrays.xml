@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="click_menu">
+        <item>Löschen</item>
+        <item>Zurücksetzen</item>
+    </string-array>
+</resources>

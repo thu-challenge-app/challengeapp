@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
@@ -20,9 +21,11 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,14 +33,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final FloatingActionButton addFab =(FloatingActionButton) findViewById(R.id.plusButton);
-        FloatingActionButton firstFab = findViewById(R.id.floatingActionButton3);
-        FloatingActionButton secondFab = findViewById(R.id.floatingActionButton4);
+        final FloatingActionButton firstFab = findViewById(R.id.floatingActionButton3);
+        final FloatingActionButton secondFab = findViewById(R.id.floatingActionButton4);
         final LinearLayout firstLayout = findViewById(R.id.firstLayout);
         final LinearLayout secondLayout = findViewById(R.id.secondLayout);
         final Animation showButton = AnimationUtils.loadAnimation(this, R.anim.show_button);
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
                     firstLayout.startAnimation(hideLayout);
                     secondLayout.startAnimation(hideLayout);
                     addFab.startAnimation(hideButton);
+                    firstFab.setEnabled(false);
+                    secondFab.setEnabled(false);
 
                 }
                 else{
@@ -63,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     firstLayout.startAnimation(showLayout);
                     secondLayout.startAnimation(showLayout);
                     addFab.startAnimation(showButton);
+                    firstFab.setEnabled(true);
+                    secondFab.setEnabled(true);
 
                 }
             }
@@ -111,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
 
         ChallengeActiveListAdapter adapter = new ChallengeActiveListAdapter(this,R.layout.adapter_view_main_challenge_layout,challenge_choosen);
         main_ListView.setAdapter(adapter);
+        registerForContextMenu(main_ListView);
+
     }
 
     @Override
@@ -118,6 +126,44 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_start, menu);
         return true;
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        if(v.getId()== R.id.Main_ListView){
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            menu.setHeaderTitle("Auswahl Menue");
+            String[] menuItems = getResources().getStringArray(R.array.click_menu);
+            for(int i = 0; i < menuItems.length; i++){
+                menu.add(Menu.NONE, i, i, menuItems[i]);
+            }
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int menuItemIndex = item.getItemId();
+        String[] menuItems = getResources().getStringArray(R.array.click_menu);
+
+        switch (menuItems[menuItemIndex]){
+            case "Löschen":
+                Toast.makeText(this, "Lösche Challenge", Toast.LENGTH_LONG).show();
+                return true;
+            case "Zurücksetzen":
+                Toast.makeText(this, "Setze zurück Challenge", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return true;
+        }
+        //if(menuItems[menuItemIndex].equals("Löschen")){
+          //  Toast.makeText(this, "Lösche Challenge", Toast.LENGTH_LONG).show();
+        //}
+        //else{
+          //  Toast.makeText(this, "Setze Challenge zurück", Toast.LENGTH_LONG).show();
+        //}
+
+
+        //return true;
     }
 
     @Override
