@@ -39,6 +39,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "  progress INTEGER" +
             ");"
         );
+        Challenge C1 = new Challenge(0,"Fleischkonsum reduzieren",5,false,0,false,true);
+        Challenge C2 = new Challenge(0,"Weniger Autofahren",100,false,38,false,true);
+        Challenge C3 = new Challenge(0,"Keine Plastiktüten nutzen",2,false,0,false,true);
+        _addChallenge(C1,db);
+        _addChallenge(C2,db);
+        _addChallenge(C3,db);
     }
 
     @Override
@@ -55,6 +61,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public void addChallenge(Challenge c){
         SQLiteDatabase db = this.getWritableDatabase();
+        _addChallenge(c,db);
+        db.close();
+
+    }
+    private void _addChallenge(Challenge c,SQLiteDatabase db){
+
         db.execSQL("INSERT INTO challenges VALUES (null, ?, ?, ?, ?, ?, ?)",
                 new Object[] {
                         c.getName(),
@@ -63,10 +75,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         c.getAverage(),
                         c.getActive() ? 1 : 0,
                         c.getPredefined() ? 1 : 0
-        });
-        db.close();
-    }
+                });
 
+    }
     private Challenge Cursor2Challenge(Cursor cursor) {
         return new Challenge(
                 cursor.getInt(0),
