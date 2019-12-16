@@ -15,7 +15,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 public class CreateActivity extends AppCompatActivity {
-    private EditText tChallenge,tMaximum,tDurchschnitt;
+    private EditText tChallenge,tMaximum,tDurchschnitt,tEinheit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +23,7 @@ public class CreateActivity extends AppCompatActivity {
         tChallenge=(EditText)findViewById(R.id.editText_Challenge);
         tMaximum=(EditText)findViewById(R.id.editText_Maximum);
         tDurchschnitt=(EditText)findViewById(R.id.editText_Durchschnitt);
+        tEinheit=(EditText)findViewById(R.id.editText_Einheit);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,15 +58,18 @@ public class CreateActivity extends AppCompatActivity {
         if (Skala_Wert.isChecked()){
             tMaximum.setVisibility(View.VISIBLE);
             tDurchschnitt.setVisibility(View.VISIBLE);
+            tEinheit.setVisibility(View.VISIBLE);
             findViewById(R.id.textView_Maximalwert).setVisibility(View.VISIBLE);
             findViewById(R.id.textView_Durchschnitt).setVisibility(View.VISIBLE);
+            findViewById(R.id.textView_Einheit).setVisibility(View.VISIBLE);
             return;
-        } else
-        {
+        } else {
             tMaximum.setVisibility(View.INVISIBLE);
             tDurchschnitt.setVisibility(View.INVISIBLE);
+            tEinheit.setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_Maximalwert).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_Durchschnitt).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView_Einheit).setVisibility(View.INVISIBLE);
         }
     }
     public void onClick_Speichern (View view) {

@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CEEBCE"
     tools:context=".CreateActivity">
 
     <TextView
         android:id="@+id/textView_Erstelle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Erstelle deine eigene Challenge"
+        android:text="@string/create_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
@@ -37,7 +36,7 @@
         android:layout_width="86dp"
         android:layout_height="19dp"
         android:layout_marginTop="36dp"
-        android:text="Challenge"
+        android:text="@string/create_challenge"
         app:layout_constraintEnd_toStartOf="@+id/editText_Challenge"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Wie regelmäßig willst du die Challenge abhaken?"
+        android:text="@string/create_frequency"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_Challenge" />
@@ -58,19 +57,19 @@
         android:layout_width="86dp"
         android:layout_height="16dp"
         android:layout_marginTop="28dp"
-        android:text="Durchschnitt"
+        android:text="@string/create_meanvalue"
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/editText_Durchschnitt"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Maximalwert" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_Einheit" />
 
     <TextView
         android:id="@+id/textView_Maximalwert"
         android:layout_width="86dp"
         android:layout_height="17dp"
         android:layout_marginTop="20dp"
-        android:text="Ziel"
+        android:text="@string/create_maximum"
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/editText_Maximum"
         app:layout_constraintHorizontal_bias="1.0"
@@ -84,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Bewertungssystem"
+        android:text="@string/create_rating"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch_TagWoche"
@@ -99,7 +98,7 @@
         android:inputType="number"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Maximum" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_Einheit" />
 
     <EditText
         android:id="@+id/editText_Maximum"
@@ -127,7 +126,7 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:onClick="onClick_Wert"
-            android:text="ja | nein"
+            android:text="@string/create_yesno"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/radioButton_1bis3"
             app:layout_constraintTop_toBottomOf="@+id/textView_Bewertung"
@@ -138,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick_Wert"
-            android:text="gar nicht | ein wenig | komplett"
+            android:text="@string/create_1to3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
@@ -151,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick_Wert"
-            android:text="Skala von 1 - 5"
+            android:text="@string/create_1to5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/radioButton_1bis3"
             app:layout_constraintTop_toBottomOf="@+id/radioButton_1bis3"
@@ -162,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick_Wert"
-            android:text="Wert"
+            android:text="@string/create_value"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/radioButton_1bis3"
             app:layout_constraintTop_toBottomOf="@+id/radioButton_Skala"
@@ -183,7 +182,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="wöchentlich"
+        android:text="@string/create_weekly"
         app:layout_constraintStart_toEndOf="@+id/switch_TagWoche"
         app:layout_constraintTop_toBottomOf="@+id/textView_TagWoche" />
 
@@ -192,7 +191,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="täglich"
+        android:text="@string/create_daily"
         app:layout_constraintEnd_toStartOf="@+id/switch_TagWoche"
         app:layout_constraintTop_toBottomOf="@+id/textView_TagWoche" />
 
@@ -200,14 +199,36 @@
         android:id="@+id/button_Speichern"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#3F7542"
+        android:layout_marginEnd="32dp"
         android:onClick="onClick_Speichern"
-        android:text="Speichern"
+        android:text="@string/action_save"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textView_Durchschnitt"
         app:layout_constraintTop_toBottomOf="@+id/editText_Durchschnitt" />
+
+    <TextView
+        android:id="@+id/textView_Einheit"
+        android:layout_width="86dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/create_unit"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/editText_Einheit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Maximalwert" />
+
+    <EditText
+        android:id="@+id/editText_Einheit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Maximum" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
