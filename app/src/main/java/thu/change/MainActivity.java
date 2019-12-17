@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -19,8 +20,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -33,6 +36,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    String selectedChallenge;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
 
         ChallengeActiveListAdapter adapter = new ChallengeActiveListAdapter(this,R.layout.adapter_view_main_challenge_layout,challenge_choosen);
         main_ListView.setAdapter(adapter);
+        //registriert Contextmenue
         registerForContextMenu(main_ListView);
-
     }
 
     @Override
@@ -129,8 +133,14 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        CoordinatorLayout layout = (CoordinatorLayout) v.getParent();
+        ListView challengeList = (ListView) layout.getChildAt(0);
+        //TextView hello = (TextView) challengeList.getChildAt(0);
+        //TextView challengeTextview = (TextView) challengeList.getChildAt(1);
         if(v.getId()== R.id.Main_ListView){
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            //selectedChallenge = ((TextView) info.targetView).getText().toString();
+
             menu.setHeaderTitle("Auswahl Menue");
             String[] menuItems = getResources().getStringArray(R.array.click_menu);
             for(int i = 0; i < menuItems.length; i++){
@@ -141,13 +151,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item){
+
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int menuItemIndex = item.getItemId();
+        int selectedChallengeInt = info.position;
+        long id = info.id;
+        //ListView listview = (ListView)info.targetView.getParent();
+        LinearLayout layout = (LinearLayout)((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).targetView;
+        TextView textView = (TextView) layout.getChildAt(1);
+        String s = textView.getText().toString();
+        String buffer = String.format("Lösche %s", id);
         String[] menuItems = getResources().getStringArray(R.array.click_menu);
+
 
         switch (menuItems[menuItemIndex]){
             case "Löschen":
-                Toast.makeText(this, "Lösche Challenge", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, buffer, Toast.LENGTH_LONG).show();
                 return true;
             case "Zurücksetzen":
                 Toast.makeText(this, "Setze zurück Challenge", Toast.LENGTH_LONG).show();
@@ -217,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
             convertView = inflater.inflate(mResource, parent, false);
 
             TextView challenge_text = (TextView) convertView.findViewById(R.id.textView3);
+
 
 
             challenge_text.setText(text);
