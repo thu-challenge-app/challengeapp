@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "  weekly INTEGER, " +
             "  average INTEGER, " +
             "  active INTEGER, " +
-            "  predefined INTEGER" +
+            "  unit TEXT" +
             ");"
         );
         db.execSQL(
@@ -39,9 +39,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "  progress INTEGER" +
             ");"
         );
-        Challenge C1 = new Challenge(0,"Fleischkonsum reduzieren",5,false,0,false,true);
-        Challenge C2 = new Challenge(0,"Weniger Autofahren",100,false,38,false,true);
-        Challenge C3 = new Challenge(0,"Keine Plastiktüten nutzen",2,false,0,false,true);
+        Challenge C1 = new Challenge(0,"Fleischkonsum reduzieren",5,false,0,false, "mal");
+        Challenge C2 = new Challenge(0,"Weniger Autofahren",100,false,38,false,"km");
+        Challenge C3 = new Challenge(0,"Keine Plastiktüten nutzen",2,false,0,false,"Stück");
         _addChallenge(C1,db);
         _addChallenge(C2,db);
         _addChallenge(C3,db);
@@ -66,7 +66,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
     private void _addChallenge(Challenge c,SQLiteDatabase db){
-
         db.execSQL("INSERT INTO challenges VALUES (null, ?, ?, ?, ?, ?, ?)",
                 new Object[] {
                         c.getName(),
@@ -74,9 +73,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         c.getWeekly() ? 1 : 0,
                         c.getAverage(),
                         c.getActive() ? 1 : 0,
-                        c.getPredefined() ? 1 : 0
+                        c.getUnit()
                 });
-
     }
     private Challenge Cursor2Challenge(Cursor cursor) {
         return new Challenge(
@@ -86,7 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 (cursor.getInt(3) == 1),
                 cursor.getInt(4),
                 (cursor.getInt(5) == 1),
-                (cursor.getInt(6) == 1)
+                cursor.getString(6)
         );
     }
 
@@ -123,6 +121,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cs;
     }
 
+    public void setChallengeActive(int id, boolean active) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE challenges " +
+                        "SET active = ? " +
+                        "WHERE id = ?",
+                new Object[]{
+                        active ? 1 : 0,
+                        id
+                }
+        );
+        db.close();
+    }
+
     public void updateChallenge(Challenge c) { //insert new DB-Entry
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("UPDATE challenges " +
@@ -131,7 +142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         "    weekly = ?, " +
                         "    average = ?, " +
                         "    active = ?, " +
-                        "    predefined = ? " +
+                        "    unit = ? " +
                         "WHERE id = ?",
                 new Object[]{
                         c.getName(),
@@ -139,7 +150,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         c.getWeekly() ? 1 : 0,
                         c.getAverage(),
                         c.getActive() ? 1 : 0,
-                        c.getPredefined() ? 1 : 0,
+                        c.getUnit(),
                         c.getId()
                 }
         );

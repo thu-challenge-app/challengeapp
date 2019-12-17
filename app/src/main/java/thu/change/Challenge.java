@@ -7,7 +7,7 @@ public class Challenge {
     private boolean weekly;
     private int average;
     private boolean active;
-    private boolean predefined;
+    private String unit;
 
     // Constructor
     public Challenge(){
@@ -17,7 +17,7 @@ public class Challenge {
         weekly = false;
         average = 0;
         active = false;
-        predefined = false;
+        unit = "";
     }
     public Challenge(int aId,
                      String aName,
@@ -25,7 +25,7 @@ public class Challenge {
                      boolean aWeekly,
                      int aAverage,
                      boolean aActive,
-                     boolean aPredefined) {
+                     String aUnit) {
         super();
         id = aId;
         name = aName;
@@ -33,23 +33,23 @@ public class Challenge {
         weekly = aWeekly;
         average = aAverage;
         active = aActive;
-        predefined = aPredefined;
+        unit = aUnit;
     }
 
     // Getters
-    public int getId()             { return id; }
-    public String getName()        { return name; }
-    public int getMaximum()        { return maximum; }
-    public boolean getWeekly()     { return weekly; }
-    public int getAverage()        { return average; }
-    public boolean getActive()     { return active; }
-    public boolean getPredefined() { return predefined; }
+    public int getId()         { return id; }
+    public String getName()    { return name; }
+    public int getMaximum()    { return maximum; }
+    public boolean getWeekly() { return weekly; }
+    public int getAverage()    { return average; }
+    public boolean getActive() { return active; }
+    public String getUnit()    { return unit; }
 
     // Setters
-    public void setName(String aValue)        { name =       aValue; }
-    public void setMaximum(int aValue)        { maximum =    aValue; }
-    public void setWeekly(boolean aValue)     { weekly =     aValue; }
-    public void setAverage(int aValue)        { average =    aValue; }
-    public void setActive(boolean aValue)     { active =     aValue; }
-    public void setPredefined(boolean aValue) { predefined = aValue; }
+    public void setName(String aValue)    { name =    aValue; }
+    public void setMaximum(int aValue)    { maximum = aValue; }
+    public void setWeekly(boolean aValue) { weekly =  aValue; }
+    public void setAverage(int aValue)    { average = aValue; }
+    public void setActive(boolean aValue) { active =  aValue; }
+    public void setUnit(String aValue)    { unit =    aValue; }
 }

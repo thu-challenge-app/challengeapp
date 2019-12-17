@@ -92,6 +92,9 @@ public class CreateActivity extends AppCompatActivity {
             // Store challenge name
             c.setName(tChallenge.getText().toString());
 
+            // Store unit
+            c.setUnit(tEinheit.getText().toString());
+
             // Store average if text box is filled
             if (!tDurchschnitt.getText().toString().isEmpty()) {
                 c.setAverage(Integer.parseInt(tDurchschnitt.getText().toString()));
@@ -124,6 +127,7 @@ public class CreateActivity extends AppCompatActivity {
             tChallenge.setText("");
             tDurchschnitt.setText("");
             tMaximum.setText("");
+            tEinheit.setText("");
         }
     }
 }
