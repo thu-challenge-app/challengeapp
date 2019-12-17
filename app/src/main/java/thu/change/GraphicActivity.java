@@ -38,10 +38,10 @@ public class GraphicActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_graphic);
 
         mChart = (LineChart) findViewById(R.id.linechart);
-
+        //int test = 0;
         //mChart.setOnChartGestureListener(MainActivity.this);
         //mChart.setOnChartValueSelectedListener(MainActivity.this);
 
