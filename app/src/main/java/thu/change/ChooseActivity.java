@@ -55,23 +55,8 @@ public class ChooseActivity extends AppCompatActivity {
         TextView challenge_information = (TextView) layout.getChildAt(1);
 
 
-        for(int i = 0; i< challenges.size();i++){
-            if(challenge_information.getText().toString().contains(challenges.get(i).getName())){
-                Challenge challenge = new Challenge();
-                challenge = challenges.get(i);
-                if(challenge_checkbox.isChecked()) {
-                    challenge.setActive(true);
-                    db.updateChallenge(challenge);
-                }
-                else{
-                    challenge.setActive(false);
-                    db.updateChallenge(challenge);
-                }
-            }
-            else{
-                /* do nothing */
-            }
-
+        for(int i = 0; i< challenges.size();i++) {
+            db.setChallengeActive(v.getId(), challenge_checkbox.isChecked());
         }
     }
 
@@ -112,6 +97,7 @@ public class ChooseActivity extends AppCompatActivity {
 
             String text = getItem(position).getName();
             Boolean check = getItem(position).getActive();
+            int id = getItem(position).getId();
 
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mResource, parent, false);
@@ -121,6 +107,7 @@ public class ChooseActivity extends AppCompatActivity {
 
             challenge_text.setText(text);
             challenge_checkbox.setChecked(check);
+            challenge_checkbox.setId(id);
 
             return convertView;
 

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -187,12 +188,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick_Eintragen(View v){
+
+        LinearLayout layout = (LinearLayout) v.getParent();
+
         Intent intentchoose = new Intent(MainActivity.this, EntryActivity.class);
+        intentchoose.putExtra("Challenge_id",layout.getChildAt(0).getId());
         startActivity(intentchoose);
+
     }
 
     public void onClick_Graphik(View v){
+        LinearLayout layout = (LinearLayout) v;
         Intent intentchoose = new Intent(MainActivity.this, GraphicActivity.class);
+        intentchoose.putExtra("Challenge_id",layout.getChildAt(0).getId());
+
         startActivity(intentchoose);
     }
 
@@ -212,6 +221,7 @@ public class MainActivity extends AppCompatActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
             String text = getItem(position).getName();
+            int id = getItem(position).getId();
 
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mResource, parent, false);
@@ -220,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             challenge_text.setText(text);
+            challenge_text.setId(id);
 
             return convertView;
 

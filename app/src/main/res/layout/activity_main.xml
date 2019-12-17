@@ -50,7 +50,7 @@
             android:id="@+id/floatingActionButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/design_default_color_primary"
+            android:backgroundTint="@color/colorFloatButton"
             android:clickable="false"
             app:fabSize="mini"
             app:srcCompat="@android:drawable/ic_menu_view" />
@@ -83,7 +83,7 @@
             android:id="@+id/floatingActionButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/design_default_color_primary"
+            android:backgroundTint="@color/colorFloatButton"
             android:clickable="false"
             app:fabSize="mini"
             app:srcCompat="@android:drawable/ic_menu_add" />
