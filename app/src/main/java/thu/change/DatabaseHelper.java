@@ -90,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Challenge getChallenge(int id){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM challengess WHERE id = ?",
+        Cursor cursor = db.rawQuery("SELECT * FROM challenges WHERE id = ?",
                 new String[]{String.valueOf(id)});
 
         // if we got results get the first one
