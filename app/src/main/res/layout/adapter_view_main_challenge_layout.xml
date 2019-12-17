@@ -5,7 +5,7 @@
     android:onClick="onClick_Graphik">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView_entry"
         android:layout_width="15dp"
         android:layout_height="wrap_content"
         android:textSize="18sp" />

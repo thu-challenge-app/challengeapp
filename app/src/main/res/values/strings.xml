@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Change</string>
+    <string name="app_name">Challenge</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Speichern</string>
 
@@ -16,6 +16,18 @@
     <string name="create_maximum">Ziel</string>
     <string name="create_unit">Einheit</string>
     <string name="create_meanvalue">Durchschnitt</string>
+
+    <string name="entry_title">Heutiger Fortschritt</string>
+    <string name="entry_progress">Fortschritt</string>
+    <string name="entry_accomplished">Hast du die Challenge erreicht?</string>
+    <string name="entry_yes">ja</string>
+    <string name="entry_no">nein</string>
+    <string name="entry_notatall">gar nicht</string>
+    <string name="entry_some">ein wenig</string>
+    <string name="entry_totally">komplett</string>
+    <string name="entry_update">Aktualisieren</string>
+
+
 
 
 </resources>
