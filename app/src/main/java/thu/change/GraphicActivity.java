@@ -1,18 +1,9 @@
 package thu.change;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.view.View;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -35,11 +26,10 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-public class GraphicActivity extends FragmentActivity {
+public class GraphicActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
@@ -51,13 +41,12 @@ public class GraphicActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
         mChart = (LineChart) findViewById(R.id.linechart);
-        //mChart.setViewPortOffsets(10f, 40f, 100f,20f);
 
         //mChart.setOnChartGestureListener(MainActivity.this);
         //mChart.setOnChartValueSelectedListener(MainActivity.this);
 
-        mChart.setDragEnabled(false);
-        mChart.setScaleEnabled(true);
+        mChart.setDragEnabled(true);
+        mChart.setScaleEnabled(false);
 
         LimitLine upper_limit = new LimitLine(65f, "Durchschnitt");
         upper_limit.setLineWidth(4f);
@@ -74,8 +63,6 @@ public class GraphicActivity extends FragmentActivity {
         leftAxis.setAxisMinimum(25f);
         leftAxis.enableAxisLineDashedLine(10f, 10f, 0);
         leftAxis.setDrawGridLinesBehindData(true);
-
-
 
         mChart.getAxisRight().setEnabled(false);
         //mChart.getAxisLeft().setEnabled(false);
@@ -129,11 +116,8 @@ public class GraphicActivity extends FragmentActivity {
 
         mChart.setData(data);
 
-        //String[]values = new String[]{"Januar", "Februar", "Maerz" , "April" , "Mai" , "Juni" };
-
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        //PieDataSet pieDataSet = new PieDataSet(yEingang, "Autokilometer an Wochentage");
         Legend legend = mChart.getLegend();
         legend.setEnabled(true);
 
@@ -142,14 +126,10 @@ public class GraphicActivity extends FragmentActivity {
 
         //xAxis.setValueFormatter(new MyXAxisValueFormatter(values));
         //xAxis.setGranularity(1f);
-        xAxis.setLabelRotationAngle(10f);
+        xAxis.setLabelRotationAngle(45f);
 
     }
 
-    public void showDatePickerDialog1(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
 
 }
 
@@ -161,25 +141,4 @@ class MyValueFormatter extends ValueFormatter{
         return sdf.format(new Date((long)value*1000));
 
     }
-}
-
-
-class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the current date as the default date in the picker
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-
-        // Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(), this, year, month, day);
-    }
-
-    public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Do something with the date chosen by the user
-    }
-
 }

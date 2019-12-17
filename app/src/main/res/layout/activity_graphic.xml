@@ -6,23 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".GraphicActivity">
 
-
     <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/linechart"
-        android:layout_width="282dp"
-        android:layout_height="182dp"
-        android:layout_marginTop="64dp"
-        android:onClick="showDatePickerDialog1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"></com.github.mikephil.charting.charts.LineChart>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linechart"></com.github.mikephil.charting.charts.LineChart>
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pick data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <com.github.mikephil.charting.charts.LineChart-->
+<!--        android:id="@+id/linechart"-->
+<!--        android:layout_width="282dp"-->
+<!--        android:layout_height="182dp"-->
+<!--        android:layout_marginTop="64dp"-->
+<!--        android:onClick="showDatePickerDialog1"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button3"></com.github.mikephil.charting.charts.LineChart>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="pick data"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
