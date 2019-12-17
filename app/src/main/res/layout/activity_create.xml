@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.03" />
 
     <TextView
-        android:id="@+id/textView_Challenge"
+        android:id="@+id/textView_Challengee"
         android:layout_width="86dp"
         android:layout_height="19dp"
         android:layout_marginTop="36dp"
