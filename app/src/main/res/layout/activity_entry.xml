@@ -7,10 +7,180 @@
     tools:context=".EntryActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eingabe_Activity"
-        tools:layout_editor_absoluteX="109dp"
-        tools:layout_editor_absoluteY="179dp" />
+        android:text="@string/entry_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
+
+
+    <EditText
+        android:id="@+id/editText_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="80dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_accomplished" />
+
+    <TextView
+        android:id="@+id/textView_accomplished"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/entry_accomplished"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_entry" />
+
+
+    <RadioGroup
+        android:id="@+id/RadioGroup_2"
+        android:layout_width="104dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_accomplished">
+
+        <RadioButton
+            android:id="@+id/radioButton_2yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:text="@string/entry_yes"
+            tools:layout_editor_absoluteX="167dp"
+            tools:layout_editor_absoluteY="210dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_2no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/entry_no"
+            tools:layout_editor_absoluteX="210dp"
+            tools:layout_editor_absoluteY="210dp" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/RadioGroup_3"
+        android:layout_width="93dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_accomplished">
+
+        <RadioButton
+            android:id="@+id/radioButton_3no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/entry_notatall"
+            tools:layout_editor_absoluteX="142dp"
+            tools:layout_editor_absoluteY="262dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_3some"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_some"
+            tools:layout_editor_absoluteX="142dp"
+            tools:layout_editor_absoluteY="294dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_3yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_totally"
+            tools:layout_editor_absoluteX="142dp"
+            tools:layout_editor_absoluteY="326dp" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/RadioGroup_5"
+        android:layout_width="274dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_accomplished">
+
+
+        <RadioButton
+            android:id="@+id/radioButton_51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layoutDirection="rtl"
+            android:text="@string/entry_notatall"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="390dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_52"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="142dp"
+            tools:layout_editor_absoluteY="390dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="174dp"
+            tools:layout_editor_absoluteY="390dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="206dp"
+            tools:layout_editor_absoluteY="390dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/entry_totally"
+            tools:layout_editor_absoluteX="238dp"
+            tools:layout_editor_absoluteY="390dp" />
+
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/entry_progress"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_progress"
+        app:layout_constraintEnd_toStartOf="@+id/editText_progress"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/entry_update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroup_3" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
