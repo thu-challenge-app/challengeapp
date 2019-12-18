@@ -207,8 +207,13 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout layout = (LinearLayout) v.getParent();
 
+        //Textview mit hinterlegeten Id
+        TextView textView = (TextView) layout.getChildAt(1);
+        //Challenge Id aus Textview Id generieren
+        Integer id = textView.getId();
+
         Intent intentchoose = new Intent(MainActivity.this, EntryActivity.class);
-        intentchoose.putExtra("Challenge_id",layout.getChildAt(0).getId());
+        intentchoose.putExtra("Challenge_id",id);
         startActivity(intentchoose);
 
     }

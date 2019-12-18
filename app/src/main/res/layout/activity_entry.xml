@@ -25,10 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="80dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:hint="Fortschritt"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@+id/textView_progress"
         app:layout_constraintTop_toBottomOf="@+id/textView_accomplished" />
 
     <TextView
@@ -43,7 +45,7 @@
 
 
     <RadioGroup
-        android:id="@+id/RadioGroup_2"
+        android:id="@+id/radioGroup_2"
         android:layout_width="104dp"
         android:layout_height="33dp"
         android:layout_marginTop="16dp"
@@ -58,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layoutDirection="rtl"
+            android:onClick="onClick_rate2"
             android:text="@string/entry_yes"
             tools:layout_editor_absoluteX="167dp"
             tools:layout_editor_absoluteY="210dp" />
@@ -67,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
+            android:onClick="onClick_rate2"
             android:text="@string/entry_no"
             tools:layout_editor_absoluteX="210dp"
             tools:layout_editor_absoluteY="210dp" />
@@ -74,7 +78,7 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/RadioGroup_3"
+        android:id="@+id/radioGroup_3"
         android:layout_width="93dp"
         android:layout_height="96dp"
         android:layout_marginTop="16dp"
@@ -87,6 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
+            android:onClick="onClick_rate3"
             android:text="@string/entry_notatall"
             tools:layout_editor_absoluteX="142dp"
             tools:layout_editor_absoluteY="262dp" />
@@ -95,6 +100,7 @@
             android:id="@+id/radioButton_3some"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onClick_rate3"
             android:text="@string/entry_some"
             tools:layout_editor_absoluteX="142dp"
             tools:layout_editor_absoluteY="294dp" />
@@ -103,13 +109,14 @@
             android:id="@+id/radioButton_3yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onClick_rate3"
             android:text="@string/entry_totally"
             tools:layout_editor_absoluteX="142dp"
             tools:layout_editor_absoluteY="326dp" />
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/RadioGroup_5"
+        android:id="@+id/radioGroup_5"
         android:layout_width="274dp"
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
@@ -125,6 +132,7 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:layoutDirection="rtl"
+            android:onClick="onClick_rate5"
             android:text="@string/entry_notatall"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="390dp" />
@@ -133,6 +141,7 @@
             android:id="@+id/radioButton_52"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onClick_rate5"
             tools:layout_editor_absoluteX="142dp"
             tools:layout_editor_absoluteY="390dp" />
 
@@ -140,6 +149,7 @@
             android:id="@+id/radioButton_53"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onClick_rate5"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="390dp" />
 
@@ -147,6 +157,7 @@
             android:id="@+id/radioButton_54"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onClick_rate5"
             tools:layout_editor_absoluteX="206dp"
             tools:layout_editor_absoluteY="390dp" />
 
@@ -154,6 +165,7 @@
             android:id="@+id/radioButton_55"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onClick_rate5"
             android:text="@string/entry_totally"
             tools:layout_editor_absoluteX="238dp"
             tools:layout_editor_absoluteY="390dp" />
@@ -165,11 +177,10 @@
         android:id="@+id/textView_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/entry_progress"
         app:layout_constraintBottom_toBottomOf="@+id/editText_progress"
-        app:layout_constraintEnd_toStartOf="@+id/editText_progress"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -181,10 +192,10 @@
         android:text="@string/entry_update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RadioGroup_3" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_3" />
 
     <TextView
-        android:id="@+id/textView_Challengee"
+        android:id="@+id/textView_chosenChallenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
@@ -192,6 +203,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_entry" />
+
+    <TextView
+        android:id="@+id/textView_unit"
+        android:layout_width="79dp"
+        android:layout_height="19dp"
+        android:text="einheit"
+        app:layout_constraintStart_toStartOf="@+id/editText_progress"
+        app:layout_constraintTop_toBottomOf="@+id/editText_progress" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
