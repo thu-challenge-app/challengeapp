@@ -45,6 +45,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
+            android:clickable="false"
             android:text="Auswählen" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -78,6 +79,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
+            android:clickable="false"
             android:text="Erstellen" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
