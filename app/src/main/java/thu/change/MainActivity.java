@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         final FloatingActionButton secondFab = findViewById(R.id.floatingActionButton4);
         final LinearLayout firstLayout = findViewById(R.id.firstLayout);
         final LinearLayout secondLayout = findViewById(R.id.secondLayout);
+        final TextView firstText = findViewById(R.id.textView);
+        final TextView secondText = findViewById(R.id.textView2);
         final Animation showButton = AnimationUtils.loadAnimation(this, R.anim.show_button);
         final Animation hideButton = AnimationUtils.loadAnimation(this, R.anim.hide_button);
         final Animation showLayout = AnimationUtils.loadAnimation(this, R.anim.show_layout);
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                     addFab.startAnimation(hideButton);
                     firstFab.setEnabled(false);
                     secondFab.setEnabled(false);
+                    firstText.setEnabled(false);
+                    secondText.setEnabled(false);
 
                 }
                 else{
@@ -73,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                     addFab.startAnimation(showButton);
                     firstFab.setEnabled(true);
                     secondFab.setEnabled(true);
+                    firstText.setEnabled(true);
+                    secondText.setEnabled(true);
 
                 }
             }
@@ -102,12 +108,43 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentchoose);
             }
         });
-
+        firstText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firstLayout.setVisibility(View.GONE);
+                secondLayout.setVisibility(View.GONE);
+                firstLayout.startAnimation(hideLayout);
+                secondLayout.startAnimation(hideLayout);
+                addFab.startAnimation(hideButton);
+                Intent intentchoose = new Intent(MainActivity.this, ChooseActivity.class);
+                startActivity(intentchoose);
+            }
+        });
+        secondText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firstLayout.setVisibility(View.GONE);
+                secondLayout.setVisibility(View.GONE);
+                firstLayout.startAnimation(hideLayout);
+                secondLayout.startAnimation(hideLayout);
+                addFab.startAnimation(hideButton);
+                Intent intentchoose = new Intent(MainActivity.this, ChooseActivity.class);
+                startActivity(intentchoose);
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        final TextView firstText = findViewById(R.id.textView);
+        final TextView secondText = findViewById(R.id.textView2);
+        final FloatingActionButton firstFab = findViewById(R.id.floatingActionButton3);
+        final FloatingActionButton secondFab = findViewById(R.id.floatingActionButton4);
+        firstFab.setEnabled(false);
+        secondFab.setEnabled(false);
+        firstText.setEnabled(false);
+        secondText.setEnabled(false);
         DatabaseHelper db = new DatabaseHelper(this);
 
         ListView main_ListView = (ListView)findViewById(R.id.Main_ListView);
@@ -161,7 +198,9 @@ public class MainActivity extends AppCompatActivity {
         switch (menuItems[menuItemIndex]){
             case "Löschen":
                 DatabaseHelper db = new DatabaseHelper(this);
+                //Challenge als nicht aktiv setzen
                 db.setChallengeActive(id, false);
+                //Aktualisierug der Startseite
                 ListView main_ListView = (ListView)findViewById(R.id.Main_ListView);
                 List<Challenge> challenges = db.getAllChallenges();
                 List<Challenge> challenge_choosen = new LinkedList<Challenge>();
