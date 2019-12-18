@@ -133,14 +133,9 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
-        CoordinatorLayout layout = (CoordinatorLayout) v.getParent();
-        ListView challengeList = (ListView) layout.getChildAt(0);
-        //TextView hello = (TextView) challengeList.getChildAt(0);
-        //TextView challengeTextview = (TextView) challengeList.getChildAt(1);
+
         if(v.getId()== R.id.Main_ListView){
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-            //selectedChallenge = ((TextView) info.targetView).getText().toString();
-
             menu.setHeaderTitle("Auswahl Menue");
             String[] menuItems = getResources().getStringArray(R.array.click_menu);
             for(int i = 0; i < menuItems.length; i++){
@@ -154,35 +149,38 @@ public class MainActivity extends AppCompatActivity {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int menuItemIndex = item.getItemId();
-        int selectedChallengeInt = info.position;
-        long id = info.id;
-        //ListView listview = (ListView)info.targetView.getParent();
+        //View des hinterlegeten Layout
         LinearLayout layout = (LinearLayout)((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).targetView;
+        //Textview mit hinterlegeten Id
         TextView textView = (TextView) layout.getChildAt(1);
-        String s = textView.getText().toString();
-        String buffer = String.format("Lösche %s", id);
+        //Challenge Id aus Textview Id generieren
+        Integer id = textView.getId();
+        //Contextmenue Auswahl
         String[] menuItems = getResources().getStringArray(R.array.click_menu);
-
 
         switch (menuItems[menuItemIndex]){
             case "Löschen":
-                Toast.makeText(this, buffer, Toast.LENGTH_LONG).show();
+                DatabaseHelper db = new DatabaseHelper(this);
+                db.setChallengeActive(id, false);
+                ListView main_ListView = (ListView)findViewById(R.id.Main_ListView);
+                List<Challenge> challenges = db.getAllChallenges();
+                List<Challenge> challenge_choosen = new LinkedList<Challenge>();
+                for(int i = 0; i<challenges.size();i++){
+                    if(challenges.get(i).getActive()){
+                        challenge_choosen.add(challenges.get(i));
+                    }
+                }
+
+                ChallengeActiveListAdapter adapter = new ChallengeActiveListAdapter(this,R.layout.adapter_view_main_challenge_layout,challenge_choosen);
+                main_ListView.setAdapter(adapter);
                 return true;
+
             case "Zurücksetzen":
                 Toast.makeText(this, "Setze zurück Challenge", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return true;
         }
-        //if(menuItems[menuItemIndex].equals("Löschen")){
-          //  Toast.makeText(this, "Lösche Challenge", Toast.LENGTH_LONG).show();
-        //}
-        //else{
-          //  Toast.makeText(this, "Setze Challenge zurück", Toast.LENGTH_LONG).show();
-        //}
-
-
-        //return true;
     }
 
     @Override
