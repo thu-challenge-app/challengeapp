@@ -166,4 +166,69 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM challengelog WHERE challengeid = ?",
                 new Object[]{c.getId()});
     }
+
+    // Block of SQL code to define the "current" timestamp for this day
+    // for the given challenge ID.
+    // Daily challenges are normalized to the start of the current day
+    // Weekly challenges are normalized to the start of the wednesday of this week
+    private final String SQL_CURRENT_DATE_FOR_CHALLENGE =
+      "CASE WHEN (SELECT weekly FROM challenges WHERE id = ?) == 1 THEN " +
+        "strftime('%s', 'now', 'start of day', 'weekday 0', '-4 days') " +
+      "ELSE " +
+        "strftime('%s', 'now', 'start of day') " +
+      "END ";
+
+    public int getTodaysChallengeValue(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT progress FROM challengelog WHERE challengeid = ? AND time = " + SQL_CURRENT_DATE_FOR_CHALLENGE,
+                new String[]{String.valueOf(id), String.valueOf(id)});
+
+        // if we got results get the first one
+        if (cursor.getCount() > 0)
+            cursor.moveToFirst();
+        else
+            return 0;
+
+        int progress = cursor.getInt(0);
+
+        db.close();
+        return progress;
+    }
+
+    public void setTodaysChallengeValue(int id, int value) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id FROM challengelog WHERE challengeid = ? AND time = " + SQL_CURRENT_DATE_FOR_CHALLENGE,
+                new String[]{String.valueOf(id), String.valueOf(id)});
+
+        // If the entry exists, get its ID and update the entry
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            int logid = cursor.getInt(0);
+            db.execSQL("UPDATE challengelog " +
+                            "SET progress = ? " +
+                            "WHERE id = ?",
+                new Object[]{
+                        value,
+                        logid
+                }
+            );
+        }
+        // Otherwise, create the entry
+        else {
+            db.execSQL("INSERT INTO challengelog " +
+                            "VALUES(null, " +
+                            "       ?, " +
+                            SQL_CURRENT_DATE_FOR_CHALLENGE + ", " +
+                            "       ?)",
+                    new Object[]{
+                            id,
+                            id,
+                            value
+                    }
+            );
+        }
+
+
+        db.close();
+    }
 }
