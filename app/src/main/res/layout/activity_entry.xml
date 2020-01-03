@@ -212,14 +212,5 @@
         app:layout_constraintStart_toStartOf="@+id/editText_progress"
         app:layout_constraintTop_toBottomOf="@+id/editText_progress" />
 
-    <TextView
-        android:id="@+id/textView_dbmax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_chosenChallenge"
-        app:layout_constraintTop_toBottomOf="@+id/textView_entry" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,7 +35,7 @@ public class EntryActivity extends AppCompatActivity {
         tunit.setText(ch.getUnit());
         int current_progress = db.getTodaysChallengeValue(id);
 
-        if (ch_skala==2) {
+        if (ch_skala==1) {
             findViewById(R.id.radioGroup_3).setVisibility(View.INVISIBLE);
             findViewById(R.id.radioGroup_5).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_progress).setVisibility(View.INVISIBLE);
@@ -46,7 +46,7 @@ public class EntryActivity extends AppCompatActivity {
             else
                 ((RadioButton)findViewById(R.id.radioButton_2yes)).setChecked(true);
         }
-        else if (ch_skala ==3){
+        else if (ch_skala ==2){
             findViewById(R.id.radioGroup_2).setVisibility(View.INVISIBLE);
             findViewById(R.id.radioGroup_5).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_progress).setVisibility(View.INVISIBLE);
@@ -59,7 +59,7 @@ public class EntryActivity extends AppCompatActivity {
             else
                 ((RadioButton)findViewById(R.id.radioButton_3yes)).setChecked(true);
         }
-        else if (ch_skala==5) {
+        else if (ch_skala==4) {
             findViewById(R.id.radioGroup_2).setVisibility(View.INVISIBLE);
             findViewById(R.id.radioGroup_3).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_progress).setVisibility(View.INVISIBLE);
