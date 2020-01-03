@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -160,6 +161,26 @@ public class MainActivity extends AppCompatActivity {
         main_ListView.setAdapter(adapter);
         //registriert Contextmenue
         registerForContextMenu(main_ListView);
+
+        //Progress Bar
+        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        Integer progress;
+        progressBar.setProgress(50);
+        progressBar.setMax(100);
+        for(int index = 0; index<challenge_choosen.size(); index++){
+            Integer buffer = db.getTodaysChallengeValue(challenge_choosen.get(index).getId());
+            Integer target = challenge_choosen.get(index).getMaximum();
+            // Check auf Min/Max
+            boolean max;
+            if(max=true){
+                progress = (buffer / (target * challenge_choosen.size())) * 100;
+            }
+            else{
+                //Hier für Minimum
+                progress = 1;
+            }
+            progressBar.setProgress(progressBar.getProgress() + progress);
+        }
     }
 
     @Override

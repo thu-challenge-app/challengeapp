@@ -7,6 +7,15 @@
     android:longClickable="false"
     tools:context=".MainActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:backgroundTint="@color/design_default_color_primary_dark"
+        android:maxHeight="16dip"
+        android:minHeight="16dip" />
+
     <ListView
         android:id="@+id/Main_ListView"
         android:layout_width="wrap_content"
