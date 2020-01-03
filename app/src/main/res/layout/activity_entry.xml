@@ -69,7 +69,7 @@
             android:id="@+id/radioButton_2no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:onClick="onClick_rate2"
             android:text="@string/entry_no"
             tools:layout_editor_absoluteX="210dp"
@@ -90,7 +90,7 @@
             android:id="@+id/radioButton_3no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:onClick="onClick_rate3"
             android:text="@string/entry_notatall"
             tools:layout_editor_absoluteX="142dp"
@@ -130,7 +130,7 @@
             android:id="@+id/radioButton_51"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:layoutDirection="rtl"
             android:onClick="onClick_rate5"
             android:text="@string/entry_notatall"
@@ -211,6 +211,15 @@
         android:text="einheit"
         app:layout_constraintStart_toStartOf="@+id/editText_progress"
         app:layout_constraintTop_toBottomOf="@+id/editText_progress" />
+
+    <TextView
+        android:id="@+id/textView_dbmax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_chosenChallenge"
+        app:layout_constraintTop_toBottomOf="@+id/textView_entry" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ private int progress;
         setContentView(R.layout.activity_entry);
         TextView tchallenge = (TextView) findViewById(R.id.textView_chosenChallenge);
         TextView tunit = (TextView) findViewById(R.id.textView_unit);
+        TextView tdbmax = (TextView) findViewById(R.id.textView_dbmax);
+        RadioGroup rg2 = (RadioGroup) findViewById(R.id.radioGroup_2);
 
         DatabaseHelper db = new DatabaseHelper(this);
 
@@ -33,20 +36,22 @@ private int progress;
         int ch_skala = ch.getMaximum();
         tchallenge.setText(ch.getName());
         tunit.setText(ch.getUnit());
+        int valuetoday = 1;
 
-        if (ch_skala==2){
+
+        if (ch_skala==1){
             findViewById(R.id.radioGroup_3).setVisibility(View.INVISIBLE);
             findViewById(R.id.radioGroup_5).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_progress).setVisibility(View.INVISIBLE);
             findViewById(R.id.editText_progress).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_unit).setVisibility(View.INVISIBLE);}
-        else if (ch_skala ==3){
+        else if (ch_skala ==2){
             findViewById(R.id.radioGroup_2).setVisibility(View.INVISIBLE);
             findViewById(R.id.radioGroup_5).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_progress).setVisibility(View.INVISIBLE);
             findViewById(R.id.editText_progress).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_unit).setVisibility(View.INVISIBLE);}
-        else if (ch_skala==5) {
+        else if (ch_skala==4) {
             findViewById(R.id.radioGroup_2).setVisibility(View.INVISIBLE);
             findViewById(R.id.radioGroup_3).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_progress).setVisibility(View.INVISIBLE);
@@ -56,6 +61,17 @@ private int progress;
                 findViewById(R.id.radioGroup_2).setVisibility(View.INVISIBLE);
                 findViewById(R.id.radioGroup_3).setVisibility(View.INVISIBLE);
                 findViewById(R.id.radioGroup_5).setVisibility(View.INVISIBLE);}
+
+        if (valuetoday == 1){
+            //findViewById(R.id.radioButton_2no).setChecked(true);}
+            rg2.check(R.id.radioButton_2yes);
+            tdbmax.setText("funktioniert");
+
+        }
+        else{
+            //findViewById(R.id.radioButton_2yes).set(true);
+                rg2.check(R.id.radioButton_2yes);
+        }
 
 
     }
