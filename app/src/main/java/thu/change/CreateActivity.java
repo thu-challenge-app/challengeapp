@@ -52,7 +52,7 @@ public class CreateActivity extends AppCompatActivity {
 
     }
 
-    //AB HIER
+    //sets visibility of additional value items
     public void onClick_Wert (View view){
         RadioButton Skala_Wert = (RadioButton) findViewById(R.id.radioButton_Wert);
         if (Skala_Wert.isChecked()){
@@ -61,7 +61,9 @@ public class CreateActivity extends AppCompatActivity {
             tEinheit.setVisibility(View.VISIBLE);
             findViewById(R.id.textView_Maximalwert).setVisibility(View.VISIBLE);
             findViewById(R.id.textView_Durchschnitt).setVisibility(View.VISIBLE);
-            findViewById(R.id.textView_Einheit).setVisibility(View.VISIBLE);
+            findViewById(R.id.switch_maxmin).setVisibility(View.VISIBLE);
+            findViewById(R.id.textView_abovemax).setVisibility(View.VISIBLE);
+            findViewById(R.id.textView_belowmax).setVisibility(View.VISIBLE);
             return;
         } else {
             tMaximum.setVisibility(View.INVISIBLE);
@@ -69,7 +71,9 @@ public class CreateActivity extends AppCompatActivity {
             tEinheit.setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_Maximalwert).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_Durchschnitt).setVisibility(View.INVISIBLE);
-            findViewById(R.id.textView_Einheit).setVisibility(View.INVISIBLE);
+            findViewById(R.id.switch_maxmin).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView_abovemax).setVisibility(View.INVISIBLE);
+            findViewById(R.id.textView_belowmax).setVisibility(View.INVISIBLE);
         }
     }
     public void onClick_Speichern (View view) {
@@ -78,6 +82,7 @@ public class CreateActivity extends AppCompatActivity {
         RadioButton Skala_5 = (RadioButton) findViewById(R.id.radioButton_Skala);
         RadioButton Skala_Wert = (RadioButton) findViewById(R.id.radioButton_Wert);
         Switch sTagWoche = (Switch) findViewById(R.id.switch_TagWoche);
+        Switch sbelow_above = (Switch) findViewById(R.id.switch_maxmin);
 
         if (view.getId() == R.id.button_Speichern) {
             // No further processing if no text is given
@@ -94,6 +99,9 @@ public class CreateActivity extends AppCompatActivity {
 
             // Store unit
             c.setUnit(tEinheit.getText().toString());
+
+            // accomplished if below max value
+            boolean above = sbelow_above.isChecked();
 
             // Store average if text box is filled
             if (!tDurchschnitt.getText().toString().isEmpty()) {
@@ -123,7 +131,8 @@ public class CreateActivity extends AppCompatActivity {
 
             String skala = String.valueOf(c.getMaximum());
             String durchschnitt = String.valueOf(c.getAverage());
-            Toast.makeText(this, "Challenge: " + c.getName() + " Durchschnitt: " + durchschnitt + " Skala: " + skala + " Doku: " + (c.getWeekly() ? "7" : "1"), Toast.LENGTH_LONG).show();
+            String uebermax = String.valueOf(above);
+            Toast.makeText(this, "Challenge: " + c.getName() + " Durchschnitt: " + durchschnitt + " Skala: " + skala + " Doku: " + (c.getWeekly() ? "7" : "1 " + uebermax), Toast.LENGTH_LONG).show();
             tChallenge.setText("");
             tDurchschnitt.setText("");
             tMaximum.setText("");

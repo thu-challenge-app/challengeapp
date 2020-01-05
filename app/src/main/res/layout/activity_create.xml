@@ -53,6 +53,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_Challenge" />
 
+
     <TextView
         android:id="@+id/textView_Durchschnitt"
         android:layout_width="86dp"
@@ -63,20 +64,17 @@
         app:layout_constraintEnd_toStartOf="@+id/editText_Durchschnitt"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Einheit" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_belowmax" />
 
     <TextView
         android:id="@+id/textView_Maximalwert"
-        android:layout_width="86dp"
+        android:layout_width="79dp"
         android:layout_height="17dp"
         android:layout_marginTop="20dp"
         android:text="@string/create_maximum"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/editText_Maximum"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView_Durchschnitt"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup_Skala" />
-
 
     <TextView
         android:id="@+id/textView_Bewertung"
@@ -100,19 +98,20 @@
         android:inputType="number"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Einheit" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_maxmin" />
 
     <EditText
         android:id="@+id/editText_Maximum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
         android:editable="false"
-        android:ems="10"
+        android:ems="6"
         android:hint="default: 100"
         android:inputType="number"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editText_Einheit"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView_Maximalwert"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup_Skala" />
 
     <RadioGroup
@@ -193,7 +192,7 @@
         android:id="@+id/textView_Tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:text="@string/create_daily"
         app:layout_constraintEnd_toStartOf="@+id/switch_TagWoche"
         app:layout_constraintTop_toBottomOf="@+id/textView_TagWoche" />
@@ -202,37 +201,56 @@
         android:id="@+id/button_Speichern"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
         android:onClick="onClick_Speichern"
         android:text="@string/action_save"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView_Durchschnitt"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Durchschnitt" />
-
-    <TextView
-        android:id="@+id/textView_Einheit"
-        android:layout_width="86dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/create_unit"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/editText_Einheit"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Maximalwert" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_Durchschnitt" />
 
     <EditText
         android:id="@+id/editText_Einheit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="Einheit"
+        android:autofillHints="@string/create_unit"
+        android:ems="4"
+        android:hint="@string/create_unit"
         android:inputType="textPersonName"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_Skala" />
+
+    <Switch
+        android:id="@+id/switch_maxmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:checked="true"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/textView_belowmax"
         app:layout_constraintTop_toBottomOf="@+id/editText_Maximum" />
+
+    <TextView
+        android:id="@+id/textView_belowmax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/create_smallerthanmax"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/textView_Maximalwert"
+        app:layout_constraintTop_toTopOf="@+id/switch_maxmin" />
+
+    <TextView
+        android:id="@+id/textView_abovemax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/create_greaterthanmax"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/switch_maxmin"
+        app:layout_constraintTop_toTopOf="@+id/switch_maxmin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
