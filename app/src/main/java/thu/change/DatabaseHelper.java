@@ -162,14 +162,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteChallenge(Challenge c){
+    // Methods for resetting challenge progress
+    public void resetChallenge(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Delete challenge logs
+        db.execSQL("DELETE FROM challengelog WHERE challengeid = ?",
+                new Object[]{id});
+    }
+    public void resetChallenge(Challenge c) {
+        resetChallenge(c.getId());
+    }
+
+    // Methods for deleting challenge (including progress)
+    public void deleteChallenge(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         // Delete challenge itself
         db.execSQL("DELETE FROM challenges WHERE id = ?",
-                new Object[]{c.getId()});
-        // Delete challenge logs
-        db.execSQL("DELETE FROM challengelog WHERE challengeid = ?",
-                new Object[]{c.getId()});
+                new Object[]{id});
+        // Delete (reset) challenge log for the deleted challenge
+        resetChallenge(id);
+    }
+    public void deleteChallenge(Challenge c) {
+        deleteChallenge(c.getId());
     }
 
     // Block of SQL code to define the "current" timestamp for this day
@@ -232,7 +246,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     }
             );
         }
-
 
         db.close();
     }
