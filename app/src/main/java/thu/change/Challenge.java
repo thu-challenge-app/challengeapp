@@ -8,6 +8,7 @@ public class Challenge {
     private int average;
     private boolean active;
     private String unit;
+    private boolean above;
 
     // Constructor
     public Challenge(){
@@ -18,6 +19,7 @@ public class Challenge {
         average = 0;
         active = false;
         unit = "";
+        above = true;
     }
     public Challenge(int aId,
                      String aName,
@@ -25,7 +27,8 @@ public class Challenge {
                      boolean aWeekly,
                      int aAverage,
                      boolean aActive,
-                     String aUnit) {
+                     String aUnit,
+                     boolean aAbove) {
         super();
         id = aId;
         name = aName;
@@ -34,6 +37,7 @@ public class Challenge {
         average = aAverage;
         active = aActive;
         unit = aUnit;
+        above = aAbove;
     }
 
     // Getters
@@ -44,6 +48,7 @@ public class Challenge {
     public int getAverage()    { return average; }
     public boolean getActive() { return active; }
     public String getUnit()    { return unit; }
+    public boolean getAbove()  { return above; }
 
     // Setters
     public void setName(String aValue)    { name =    aValue; }
@@ -52,4 +57,5 @@ public class Challenge {
     public void setAverage(int aValue)    { average = aValue; }
     public void setActive(boolean aValue) { active =  aValue; }
     public void setUnit(String aValue)    { unit =    aValue; }
+    public void setAbove(boolean aValue)  { above =   aValue; }
 }

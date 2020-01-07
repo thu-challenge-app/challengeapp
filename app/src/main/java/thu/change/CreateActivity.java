@@ -109,6 +109,7 @@ public class CreateActivity extends AppCompatActivity {
             }
 
             c.setWeekly(sTagWoche.isChecked());
+            c.setAbove(true);
 
             if (Skala_2.isChecked()) {
                 c.setMaximum(1);
@@ -123,6 +124,7 @@ public class CreateActivity extends AppCompatActivity {
                 } else {
                     c.setMaximum(100);
                 }
+                c.setAbove(above);
             }
 
             // Save new challenge to database
@@ -137,6 +139,7 @@ public class CreateActivity extends AppCompatActivity {
             tDurchschnitt.setText("");
             tMaximum.setText("");
             tEinheit.setText("");
+            sbelow_above.setChecked(true);
         }
     }
 }
