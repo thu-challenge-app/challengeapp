@@ -83,7 +83,7 @@ public class GraphicActivity extends AppCompatActivity {
         piechart.setTransparentCircleAlpha(0);
         piechart.setCenterText("HEUTE");
         piechart.setHoleColor(R.color.colorBackground);
-        piechart.setCenterTextSize(20);
+        piechart.setCenterTextSize(10);
         piechart.setDescription(desc);
         List<PieEntry> value = new ArrayList<>();
         value.add(new PieEntry(40f ,""));
