@@ -7,4 +7,6 @@
     <color name="colorBackground">#C1EDD3</color>
     <color name="colorButton">#56896E</color>
     <color name="colorButtontext">#F0F2F0</color>
+    <color name="pieChartGreen">#127512</color>
+    <color name="pieChartRed">#8D0F0F</color>
 </resources>

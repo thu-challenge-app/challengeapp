@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.github.mikephil.charting.data.Entry;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,12 +43,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "  progress INTEGER" +
             ");"
         );
-        Challenge C1 = new Challenge(0,"Fleischkonsum reduzieren",5,false,0,false, "mal", true);
-        Challenge C2 = new Challenge(0,"Weniger Autofahren",100,false,38,false,"km", true);
-        Challenge C3 = new Challenge(0,"Keine Plastiktüten nutzen",2,false,0,false,"Stück", true);
+        Challenge C1 = new Challenge(0,"Fleischkonsum reduzieren",5,false,0,true, "mal", false);
+        Challenge C2 = new Challenge(0,"Weniger Autofahren",100,false,38,true,"km", false);
+        Challenge C3 = new Challenge(0,"Keine Plastiktüten nutzen",2,false,0,true,"Stück", false);
         _addChallenge(C1,db);
         _addChallenge(C2,db);
         _addChallenge(C3,db);
+
+        // These are for debug! Comment/Delete before go-live!
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-01 00:00:00'), 4)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-02 00:00:00'), 3)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-03 00:00:00'), 2)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-04 00:00:00'), 0)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-05 00:00:00'), 1)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-06 00:00:00'), 2)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-07 00:00:00'), 3)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-08 00:00:00'), 0)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-09 00:00:00'), 4)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-10 00:00:00'), 5)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-11 00:00:00'), 2)");
+        db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-12 00:00:00'), 1)");
     }
 
     @Override
@@ -214,15 +231,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return progress;
     }
 
-    public void setTodaysChallengeValue(int id, int value) {
+    public int getTodaysChallengeValueId(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT id FROM challengelog WHERE challengeid = ? AND time = " + SQL_CURRENT_DATE_FOR_CHALLENGE,
                 new String[]{String.valueOf(id), String.valueOf(id)});
 
-        // If the entry exists, get its ID and update the entry
+        // If the entry exists, return its ID
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
-            int logid = cursor.getInt(0);
+            return cursor.getInt(0);
+        }
+
+        // Else return "0"
+        // Note: The ID always starts at "1", so "0" means no entry logged for today!
+        return 0;
+    }
+
+    public void setTodaysChallengeValue(int id, int value) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int logid = getTodaysChallengeValueId(id);
+
+        // If the entry exists
+        if (logid > 0) {
             db.execSQL("UPDATE challengelog " +
                             "SET progress = ? " +
                             "WHERE id = ?",
@@ -248,5 +278,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         db.close();
+    }
+
+    public ArrayList<Entry> getChallengeValueListBetween(long starttime, long endtime) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT time, progress FROM challengelog WHERE time >= ? AND time <= ? ORDER BY time",
+                new String[]{String.valueOf(starttime), String.valueOf(endtime)});
+
+        ArrayList<Entry> values = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                int time = cursor.getInt(0);
+                int value = cursor.getInt(1);
+                values.add(new Entry(cursor.getInt(0), cursor.getInt(1)));
+            } while (cursor.moveToNext());
+        }
+
+        return values;
     }
 }

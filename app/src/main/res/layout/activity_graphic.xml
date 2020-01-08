@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="124dp"
+        android:onClick="onClick_Anfang"
         android:text="Anfang"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/idPieChart"
@@ -34,7 +35,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
-
+        android:onClick="onClick_Ende"
         android:text="Ende"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Anfang"

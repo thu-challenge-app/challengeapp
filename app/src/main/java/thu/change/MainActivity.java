@@ -280,9 +280,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick_Graphik(View v){
         LinearLayout layout = (LinearLayout) v.getParent();
-        Intent intentchoose = new Intent(MainActivity.this, GraphicActivity.class);
-        intentchoose.putExtra("Challenge_id",layout.getChildAt(0).getId());
 
+        //Textview mit hinterlegeten Id
+        TextView textView = (TextView) layout.getChildAt(1);
+        //Challenge Id aus Textview Id generieren
+        Integer id = textView.getId();
+
+        Intent intentchoose = new Intent(MainActivity.this, GraphicActivity.class);
+        intentchoose.putExtra("Challenge_id", id);
         startActivity(intentchoose);
     }
 
