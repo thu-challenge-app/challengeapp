@@ -7,8 +7,4 @@
     <item android:id="@+id/auswahl"
         android:title="Challenge auswählen"
         app:showAsAction="never"/>
-    <item android:id="@+id/editieren"
-        android:title="Challenge editieren"
-        app:showAsAction="never"/>
-
 </menu>

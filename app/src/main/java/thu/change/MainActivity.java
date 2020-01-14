@@ -1,5 +1,7 @@
 package thu.change;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         final Animation showLayout = AnimationUtils.loadAnimation(this, R.anim.show_layout);
         final Animation hideLayout = AnimationUtils.loadAnimation(this, R.anim.hide_layout);
 
+        myAlarm();
 
         addFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,26 +165,8 @@ public class MainActivity extends AppCompatActivity {
         main_ListView.setAdapter(adapter);
         //registriert Contextmenue
         registerForContextMenu(main_ListView);
+        updateProgressBar();
 
-        //Progress Bar
-        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
-        Integer progress;
-        progressBar.setProgress(50);
-        progressBar.setMax(100);
-        for(int index = 0; index<challenge_choosen.size(); index++){
-            Integer buffer = db.getTodaysChallengeValue(challenge_choosen.get(index).getId());
-            Integer target = challenge_choosen.get(index).getMaximum();
-            // Check auf Min/Max
-            boolean max;
-            if(max=true){
-                progress = (buffer / (target * challenge_choosen.size())) * 100;
-            }
-            else{
-                //Hier für Minimum
-                progress = 1;
-            }
-            progressBar.setProgress(progressBar.getProgress() + progress);
-        }
     }
 
     @Override
@@ -204,9 +190,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item){
-
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int menuItemIndex = item.getItemId();
+        DatabaseHelper db = new DatabaseHelper(this);
         //View des hinterlegeten Layout
         LinearLayout layout = (LinearLayout)((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).targetView;
         //Textview mit hinterlegeten Id
@@ -215,28 +201,18 @@ public class MainActivity extends AppCompatActivity {
         Integer id = textView.getId();
         //Contextmenue Auswahl
         String[] menuItems = getResources().getStringArray(R.array.click_menu);
-
         switch (menuItems[menuItemIndex]){
             case "Löschen":
-                DatabaseHelper db = new DatabaseHelper(this);
                 //Challenge als nicht aktiv setzen
                 db.setChallengeActive(id, false);
-                //Aktualisierug der Startseite
-                ListView main_ListView = (ListView)findViewById(R.id.Main_ListView);
-                List<Challenge> challenges = db.getAllChallenges();
-                List<Challenge> challenge_choosen = new LinkedList<Challenge>();
-                for(int i = 0; i<challenges.size();i++){
-                    if(challenges.get(i).getActive()){
-                        challenge_choosen.add(challenges.get(i));
-                    }
-                }
-
-                ChallengeActiveListAdapter adapter = new ChallengeActiveListAdapter(this,R.layout.adapter_view_main_challenge_layout,challenge_choosen);
-                main_ListView.setAdapter(adapter);
+                updateProgressBar();
+                updateMainView();
                 return true;
 
             case "Zurücksetzen":
-                Toast.makeText(this, "Setze zurück Challenge", Toast.LENGTH_LONG).show();
+                db.resetChallenge(id);
+                updateProgressBar();
+                updateMainView();
                 return true;
             default:
                 return true;
@@ -253,9 +229,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.erstellen:
                 Intent intenterstellen = new Intent(this, CreateActivity.class);
                 startActivity(intenterstellen);
-                return true;
-            case R.id.editieren:
-                Toast.makeText(this, "EditierenActivity", Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -322,6 +295,83 @@ public class MainActivity extends AppCompatActivity {
             return convertView;
 
         }
+    }
+
+    public void  updateMainView(){
+        ListView main_ListView = (ListView)findViewById(R.id.Main_ListView);
+        DatabaseHelper db = new DatabaseHelper(this);
+        //Aktualisierug der Startseite
+        List<Challenge> challenges = db.getAllChallenges();
+        List<Challenge> challenge_choosen = new LinkedList<Challenge>();
+        for(int i = 0; i<challenges.size();i++){
+            if(challenges.get(i).getActive()){
+                challenge_choosen.add(challenges.get(i));
+            }
+        }
+        ChallengeActiveListAdapter adapter = new ChallengeActiveListAdapter(this,R.layout.adapter_view_main_challenge_layout,challenge_choosen);
+        main_ListView.setAdapter(adapter);
+    }
+
+    public void updateProgressBar() {
+
+        DatabaseHelper db = new DatabaseHelper(this);
+        List<Challenge> challenges = db.getAllChallenges();
+        List<Challenge> challenge_progress = new LinkedList<Challenge>();
+        for (int i = 0; i < challenges.size(); i++) {
+            //Challenges: Daily + Active
+            if (challenges.get(i).getActive() && !challenges.get(i).getWeekly()) {
+                challenge_progress.add(challenges.get(i));
+            }
+        }
+        //Progress Bar
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        float progress;
+        progressBar.setProgress(0);
+        progressBar.setMax(100);
+        for (int index = 0; index < challenge_progress.size(); index++) {
+            float value = (float)db.getTodaysChallengeValue(challenge_progress.get(index).getId());
+            Integer target = challenge_progress.get(index).getMaximum();
+            // Check auf Min/Max
+            boolean above = challenge_progress.get(index).getAbove();
+            if (above == true && value <= target) {
+                progress = (value / (target * challenge_progress.size()));
+            }
+            else if(above == true && value > target){
+                progress = 100/(float)challenge_progress.size();
+            }
+            else {
+                if(value <= target){
+                    progress = 100/(float)challenge_progress.size();
+                }
+                else if(value > target && value < 2*target) {
+                    progress = (100 - (value / target))/challenge_progress.size();
+                }
+                else{
+                    progress = (float)0;
+                }
+            }
+            int int_progress = (int) Math.floor(progress);
+            progressBar.setProgress(progressBar.getProgress() + int_progress);
+        }
+    }
+
+    public void myAlarm() {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 19);
+        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        if(calendar.getTimeInMillis()<System.currentTimeMillis()){calendar.add(Calendar.DAY_OF_YEAR,1);}
+
+
+        //if (calendar.getTime().compareTo(new Date()) < 0) calendar.add(Calendar.DAY_OF_MONTH, 1);
+        Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_FIFTEEN_MINUTES,pendingIntent);
+
+
     }
 
 }
