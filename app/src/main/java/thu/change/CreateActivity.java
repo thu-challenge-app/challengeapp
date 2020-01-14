@@ -90,6 +90,10 @@ public class CreateActivity extends AppCompatActivity {
                 Toast.makeText(this, "Bitte geben Sie einen gültigen Namen ein", Toast.LENGTH_LONG).show();
                 return;
             }
+            if ((tEinheit.getText().toString().trim().isEmpty() || tEinheit.equals(""))&&(Skala_Wert.isChecked())) {
+                Toast.makeText(this, "Bitte geben Sie eine Einheit ein", Toast.LENGTH_LONG).show();
+                return;
+            }
 
             // Create challenge instance
             Challenge c = new Challenge();
@@ -134,7 +138,7 @@ public class CreateActivity extends AppCompatActivity {
             String skala = String.valueOf(c.getMaximum());
             String durchschnitt = String.valueOf(c.getAverage());
             String uebermax = String.valueOf(above);
-            Toast.makeText(this, "Challenge: " + c.getName() + " Durchschnitt: " + durchschnitt + " Skala: " + skala + " Doku: " + (c.getWeekly() ? "7" : "1 " + uebermax), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Challenge erfolgreich erstellt", Toast.LENGTH_LONG).show();
             tChallenge.setText("");
             tDurchschnitt.setText("");
             tMaximum.setText("");

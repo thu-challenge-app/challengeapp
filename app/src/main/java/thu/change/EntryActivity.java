@@ -31,11 +31,13 @@ public class EntryActivity extends AppCompatActivity {
         ch = db.getChallenge(id);
         String ch_name = ch.getName();
         int ch_skala = ch.getMaximum();
+        String ch_unit = ch.getUnit();
         tchallenge.setText(ch.getName());
         tunit.setText(ch.getUnit());
         int current_progress = db.getTodaysChallengeValue(id);
 
-        if (ch_skala==1) {
+        // ja-nein-Bewertung
+        if (ch_skala==1 && ch_unit.isEmpty()) {
             findViewById(R.id.radioGroup_3).setVisibility(View.INVISIBLE);
             findViewById(R.id.radioGroup_5).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_progress).setVisibility(View.INVISIBLE);
@@ -46,7 +48,8 @@ public class EntryActivity extends AppCompatActivity {
             else
                 ((RadioButton)findViewById(R.id.radioButton_2yes)).setChecked(true);
         }
-        else if (ch_skala ==2){
+        // gar nicht- ein bisschen - komplett
+        else if (ch_skala ==2 && ch_unit.isEmpty()){
             findViewById(R.id.radioGroup_2).setVisibility(View.INVISIBLE);
             findViewById(R.id.radioGroup_5).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_progress).setVisibility(View.INVISIBLE);
@@ -59,7 +62,8 @@ public class EntryActivity extends AppCompatActivity {
             else
                 ((RadioButton)findViewById(R.id.radioButton_3yes)).setChecked(true);
         }
-        else if (ch_skala==4) {
+        // Skala 1 - 5
+        else if (ch_skala==4 && ch_unit.isEmpty()) {
             findViewById(R.id.radioGroup_2).setVisibility(View.INVISIBLE);
             findViewById(R.id.radioGroup_3).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_progress).setVisibility(View.INVISIBLE);

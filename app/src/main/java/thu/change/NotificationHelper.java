@@ -34,7 +34,7 @@ class NotificationHelper {
 
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mContext);
-        mBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        mBuilder.setSmallIcon(R.mipmap.eco_nuevo);
         mBuilder.setContentTitle("Challenge")
                 .setContentText("Sie haben heute noch nicht alle Challenges eingetragen")
                 .setAutoCancel(false)
