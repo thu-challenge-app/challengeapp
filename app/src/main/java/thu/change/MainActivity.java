@@ -326,17 +326,17 @@ public class MainActivity extends AppCompatActivity {
         //Progress Bar
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         float progress;
-        progressBar.setProgress(50);
+        progressBar.setProgress(0);
         progressBar.setMax(100);
         for (int index = 0; index < challenge_progress.size(); index++) {
             float value = (float)db.getTodaysChallengeValue(challenge_progress.get(index).getId());
             Integer target = challenge_progress.get(index).getMaximum();
             // Check auf Min/Max
             boolean above = challenge_progress.get(index).getAbove();
-            if (above = true && value <= target) {
+            if (above == true && value <= target) {
                 progress = (value / (target * challenge_progress.size()));
             }
-            else if(above = true && value > target){
+            else if(above == true && value > target){
                 progress = 100/(float)challenge_progress.size();
             }
             else {
