@@ -39,9 +39,6 @@ public class CreateActivity extends AppCompatActivity {
                 Intent intentauswahl = new Intent(this, ChooseActivity.class);
                 startActivity(intentauswahl);
                 return true;
-            case R.id.editieren:
-                Toast.makeText(this, "EditierenActivity", Toast.LENGTH_LONG).show();
-                return true;
             case R.id.start:
                 Intent intentstart = new Intent(this, MainActivity.class);
                 startActivity(intentstart);

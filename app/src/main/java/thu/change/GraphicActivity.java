@@ -19,6 +19,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -158,6 +159,7 @@ public class GraphicActivity extends AppCompatActivity {
         //leftAxis.setAxisMinimum(ch.getAverage());
         leftAxis.enableAxisLineDashedLine(10f, 10f, 0);
         leftAxis.setDrawGridLinesBehindData(true);
+        //leftAxis.set
         mChart.getAxisRight().setEnabled(false);
         mChart.setDescription(null);
 
@@ -165,7 +167,11 @@ public class GraphicActivity extends AppCompatActivity {
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         Legend legend = mChart.getLegend();
-        legend.setEnabled(false);
+        //legend.setEnabled(false);
+        legend.setEnabled(true);
+        String legendstring = ch.getName() + " (" + ch.getUnit() + ")";
+        legend.setCustom(new LegendEntry[]{new LegendEntry(legendstring, Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.RED)});
+        legend.setTextSize(15);
         xAxis.setValueFormatter(new MyValueFormatter());
         xAxis.setLabelRotationAngle(45f);
 
