@@ -1,5 +1,7 @@
 package thu.change;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         final Animation showLayout = AnimationUtils.loadAnimation(this, R.anim.show_layout);
         final Animation hideLayout = AnimationUtils.loadAnimation(this, R.anim.hide_layout);
 
+        myAlarm();
 
         addFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -322,6 +326,25 @@ public class MainActivity extends AppCompatActivity {
             return convertView;
 
         }
+    }
+
+    public void myAlarm() {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 19);
+        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
+        if(calendar.getTimeInMillis()<System.currentTimeMillis()){calendar.add(Calendar.DAY_OF_YEAR,1);}
+
+
+        //if (calendar.getTime().compareTo(new Date()) < 0) calendar.add(Calendar.DAY_OF_MONTH, 1);
+        Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_FIFTEEN_MINUTES,pendingIntent);
+
+
     }
 
 }
