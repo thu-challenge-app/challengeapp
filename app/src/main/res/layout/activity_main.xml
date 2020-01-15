@@ -16,15 +16,25 @@
         android:maxHeight="16dip"
         android:minHeight="16dip" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:text="Meine Challenges"
+        android:textSize="22sp">
+    </TextView>
+
     <ListView
         android:id="@+id/Main_ListView"
         android:layout_width="wrap_content"
-        android:layout_height="492dp"
-        android:layout_marginTop="80dp"
+        android:layout_height="488dp"
+        android:layout_marginTop="100dp"
         android:longClickable="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/plusButton"
+        app:backgroundTint="@color/colorFloatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -32,7 +42,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
 
     <LinearLayout
@@ -61,7 +71,7 @@
             android:id="@+id/floatingActionButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorFloatButton"
+            app:backgroundTint="@color/colorFloatButton"
             android:clickable="false"
             app:fabSize="mini"
             app:srcCompat="@android:drawable/ic_menu_view" />
@@ -95,7 +105,7 @@
             android:id="@+id/floatingActionButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorFloatButton"
+            app:backgroundTint="@color/colorFloatButton"
             android:clickable="false"
             app:fabSize="mini"
             app:srcCompat="@android:drawable/ic_menu_add" />

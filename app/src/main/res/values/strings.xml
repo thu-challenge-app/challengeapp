@@ -16,7 +16,7 @@
     <string name="create_maximum">Ziel</string>
     <string name="create_unit">Einheit</string>
     <string name="create_meanvalue">Durchschnitt</string>
-    <string name="create_greaterthanmax">überschreiten</string>
+    <string name="create_greaterthanmax">erreichen und überschreiten</string>
     <string name="create_smallerthanmax">unterschreiten</string>
 
     <string name="entry_title">Heutiger Fortschritt</string>

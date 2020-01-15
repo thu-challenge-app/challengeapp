@@ -2,10 +2,12 @@ package thu.change;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import thu.change.DatabaseHelper;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -185,13 +187,35 @@ public class ChooseActivity extends AppCompatActivity {
             challenge_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LinearLayout layout = (LinearLayout)v.getParent();
-                    DatabaseHelper db = new DatabaseHelper(mContext);
-                    CheckBox challenge_checkbox = (CheckBox) layout.getChildAt(0);
-                    Challenge c = db.getChallenge(challenge_checkbox.getId());
-                    db.deleteChallenge(c);
-                    List<Challenge> challenges_list = db.getAllChallenges();
-                    update(challenges_list);
+                    final LinearLayout layout = (LinearLayout)v.getParent();
+                    //AlertDialog.Builder builder = new AlertDialog.Builder(ChooseActivity.this);
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(ChooseActivity.this,R.style.AlertDialog);
+
+                    builder.setMessage("Möchten Sie die Challenge wirklich löschen?");
+                    builder.setTitle("Challenge löschen");
+
+                    builder.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            DatabaseHelper db = new DatabaseHelper(mContext);
+                            CheckBox challenge_checkbox = (CheckBox) layout.getChildAt(0);
+                            Challenge c = db.getChallenge(challenge_checkbox.getId());
+                            db.deleteChallenge(c);
+                            List<Challenge> challenges_list = db.getAllChallenges();
+                            update(challenges_list);
+                        }
+                    });
+                    builder.show();
+
+
+
 
 
                 }

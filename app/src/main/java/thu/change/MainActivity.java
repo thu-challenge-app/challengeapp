@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         final Animation showLayout = AnimationUtils.loadAnimation(this, R.anim.show_layout);
         final Animation hideLayout = AnimationUtils.loadAnimation(this, R.anim.hide_layout);
 
-        myAlarm();
+       myAlarm();
 
         addFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -356,21 +356,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void myAlarm() {
-
+        DatabaseHelper db = new DatabaseHelper(this);
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 19);
-        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.MINUTE, 20);
         calendar.set(Calendar.SECOND,0);
         calendar.set(Calendar.MILLISECOND,0);
+        // time comparison
         if(calendar.getTimeInMillis()<System.currentTimeMillis()){calendar.add(Calendar.DAY_OF_YEAR,1);}
 
 
-        //if (calendar.getTime().compareTo(new Date()) < 0) calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        // sending Intent
         Intent intent = new Intent(getApplicationContext(), NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_FIFTEEN_MINUTES,pendingIntent);
 
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
+        List<Challenge> challenges = db.getAllChallenges();
+        boolean notification_is_needed = false;
+        for(int i = 0; i<challenges.size();i++){
+            if (db.getTodaysChallengeValueId(challenges.get(i).getId())==0){
+                notification_is_needed = true;
+                break;
+
+            }
+        }
+
+        if (notification_is_needed==true) {
+            //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_FIFTEEN_MINUTES,pendingIntent);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        }
 
     }
 

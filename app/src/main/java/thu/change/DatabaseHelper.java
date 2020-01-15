@@ -46,9 +46,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Challenge C1 = new Challenge(0,"Fleischkonsum reduzieren",5,false,0,true, "mal", false);
         Challenge C2 = new Challenge(0,"Weniger Autofahren",100,false,38,true,"km", false);
         Challenge C3 = new Challenge(0,"Keine Plastiktüten nutzen",2,false,0,true,"Stück", false);
+        Challenge C4 = new Challenge(0,"Keine Lebensmittel wegwerfen",2,false,0,true,"", false);
+        Challenge C5 = new Challenge(0,"Kalt duschen",4,true,0,true,"", false);
+        Challenge C6 = new Challenge(0,"Biolebensmittel kaufen",4,false,0,false,"", false);
+        Challenge C7 = new Challenge(0,"Keine Kleidung kaufen",2,true,0,false,"", false);
+        Challenge C8 = new Challenge(0,"Regional einkaufen",2,false,0,false,"", false);
+        Challenge C9 = new Challenge(0,"Werbemails kündigen",4,false,0,false,"", false);
+        Challenge C10 = new Challenge(0,"Handynutzung reduzieren",2,false,2,false,"Stunden", false);
+        //Challenge C4 = new Challenge(0,"",2,false,0,true,"", false);
+        // Palmölfreie Woche
+
+
+        // Müll aufsammeln in der Öffentlichkeit
+        // Mit Freunden regional kochen
+        // regional einkaufen
+        // Handynutzung einschränken
+        // Werbemails kündigen
+
         _addChallenge(C1,db);
         _addChallenge(C2,db);
         _addChallenge(C3,db);
+        _addChallenge(C4,db);
+        _addChallenge(C5,db);
+        _addChallenge(C6,db);
+        _addChallenge(C7,db);
+        _addChallenge(C8,db);
+        _addChallenge(C9,db);
+        _addChallenge(C10,db);
 
         // These are for debug! Comment/Delete before go-live!
         db.execSQL("INSERT INTO challengelog VALUES (null, 1, strftime('%s','2020-01-01 00:00:00'), 4)");
