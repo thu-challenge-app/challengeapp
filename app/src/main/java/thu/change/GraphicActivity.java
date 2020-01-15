@@ -212,7 +212,7 @@ public class GraphicActivity extends AppCompatActivity {
 
     private void updateGraph() {
         //Werte LineChart
-        ArrayList<Entry> yValues = db.getChallengeValueListBetween(startdate.getTimeInMillis() / 1000L, enddate.getTimeInMillis() / 1000L);
+        ArrayList<Entry> yValues = db.getChallengeValueListBetween(ch, startdate.getTimeInMillis() / 1000L, enddate.getTimeInMillis() / 1000L);
 
         LineDataSet set1 = new LineDataSet(yValues, "");
         set1.setFillAlpha(110);

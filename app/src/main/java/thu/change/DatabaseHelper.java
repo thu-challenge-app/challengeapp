@@ -317,10 +317,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<Entry> getChallengeValueListBetween(long starttime, long endtime) {
+    public ArrayList<Entry> getChallengeValueListBetween(int id, long starttime, long endtime) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT time, progress FROM challengelog WHERE time >= ? AND time <= ? ORDER BY time",
-                new String[]{String.valueOf(starttime), String.valueOf(endtime)});
+        Cursor cursor = db.rawQuery("SELECT time, progress " +
+                                         "FROM challengelog " +
+                                         "WHERE challengeid = ? " +
+                                         "  AND time >= ? " +
+                                         "  AND time <= ? " +
+                                         "ORDER BY time",
+                new String[]{
+                        String.valueOf(id),
+                        String.valueOf(starttime),
+                        String.valueOf(endtime)
+                }
+        );
 
         ArrayList<Entry> values = new ArrayList<>();
 
@@ -331,5 +341,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return values;
+    }
+    public ArrayList<Entry> getChallengeValueListBetween(Challenge c, long starttime, long endtime) {
+        return getChallengeValueListBetween(c.getId(), starttime, endtime);
     }
 }
