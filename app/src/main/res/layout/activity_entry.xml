@@ -6,19 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".EntryActivity">
 
+
     <TextView
         android:id="@+id/textView_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/entry_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="22sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
-
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editText_progress"
@@ -37,8 +37,9 @@
         android:id="@+id/textView_accomplished"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:text="@string/entry_accomplished"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_entry" />
@@ -177,7 +178,7 @@
         android:id="@+id/textView_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginBottom="8dp"
         android:text="@string/entry_progress"
         app:layout_constraintBottom_toBottomOf="@+id/editText_progress"
@@ -199,7 +200,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:text="TextView"
+        android:singleLine="false"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_entry" />
@@ -211,6 +213,15 @@
         android:text="einheit"
         app:layout_constraintStart_toStartOf="@+id/editText_progress"
         app:layout_constraintTop_toBottomOf="@+id/editText_progress" />
+
+    <TextView
+        android:id="@+id/textView_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textView_accomplished"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_chosenChallenge" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

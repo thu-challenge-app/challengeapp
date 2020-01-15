@@ -358,8 +358,8 @@ public class MainActivity extends AppCompatActivity {
     public void myAlarm() {
         DatabaseHelper db = new DatabaseHelper(this);
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 9);
-        calendar.set(Calendar.MINUTE, 20);
+        calendar.set(Calendar.HOUR_OF_DAY, 19);
+        calendar.set(Calendar.MINUTE, 30);
         calendar.set(Calendar.SECOND,0);
         calendar.set(Calendar.MILLISECOND,0);
         // time comparison

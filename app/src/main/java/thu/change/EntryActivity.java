@@ -23,6 +23,7 @@ public class EntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_entry);
         TextView tchallenge = (TextView) findViewById(R.id.textView_chosenChallenge);
         TextView tunit = (TextView) findViewById(R.id.textView_unit);
+        TextView tgoal = (TextView) findViewById(R.id.textView_goal);
 
         DatabaseHelper db = new DatabaseHelper(this);
 
@@ -34,6 +35,9 @@ public class EntryActivity extends AppCompatActivity {
         String ch_unit = ch.getUnit();
         tchallenge.setText(ch.getName());
         tunit.setText(ch.getUnit());
+        if (!ch.getUnit().isEmpty())
+        {tgoal.setText("Dein Ziel: " + ch.getMaximum() + " " + ch.getUnit());}
+
         int current_progress = db.getTodaysChallengeValue(id);
 
         // ja-nein-Bewertung
