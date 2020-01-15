@@ -252,8 +252,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return progress;
     }
+    public int getTodaysChallengeValue(Challenge c) {
+        return getTodaysChallengeValue(c.getId());
+    }
 
-    public int getTodaysChallengeValueId(int id) {
+    // Internal helper. Returns the log id (for table challengelog) for the given challenge id
+    private int getTodaysChallengeValueId(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT id FROM challengelog WHERE challengeid = ? AND time = " + SQL_CURRENT_DATE_FOR_CHALLENGE,
                 new String[]{String.valueOf(id), String.valueOf(id)});
@@ -269,6 +273,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return 0;
     }
 
+    // Returns true if the given challenge id has a value set for today
+    public boolean isTodaysChallengeValueSet(int id) {
+        return (getTodaysChallengeValueId(id) != 0);
+    }
+    public boolean isTodaysChallengeValueSet(Challenge c) {
+        return isTodaysChallengeValueSet(c.getId());
+    }
+
+    // Sets todays challenge value for given challenge id
     public void setTodaysChallengeValue(int id, int value) {
         SQLiteDatabase db = this.getReadableDatabase();
         int logid = getTodaysChallengeValueId(id);

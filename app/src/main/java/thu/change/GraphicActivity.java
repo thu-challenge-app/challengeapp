@@ -125,7 +125,9 @@ public class GraphicActivity extends AppCompatActivity {
             piechart.setDescription(desc);
             List<PieEntry> value = new ArrayList<>();
             int max = ch.getMaximum();
-            int dayvalue = db.getTodaysChallengeValue(ch.getId());
+            int dayvalue = max;
+            if (db.isTodaysChallengeValueSet(ch))
+                dayvalue = db.getTodaysChallengeValue(ch);
             if (dayvalue > max)
                 dayvalue = max;
             value.add(new PieEntry(max - dayvalue, ""));

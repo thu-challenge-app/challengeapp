@@ -376,14 +376,13 @@ public class MainActivity extends AppCompatActivity {
         List<Challenge> challenges = db.getAllChallenges();
         boolean notification_is_needed = false;
         for(int i = 0; i<challenges.size();i++){
-            if (db.getTodaysChallengeValueId(challenges.get(i).getId())==0){
+            if (!db.isTodaysChallengeValueSet(challenges.get(i))){
                 notification_is_needed = true;
                 break;
-
             }
         }
 
-        if (notification_is_needed==true) {
+        if (notification_is_needed) {
             //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_FIFTEEN_MINUTES,pendingIntent);
             alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
         }
