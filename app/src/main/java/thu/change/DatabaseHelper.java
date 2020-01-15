@@ -254,6 +254,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return progress;
     }
+    public int getTodaysChallengeValue(Challenge c) {
+        return getTodaysChallengeValue(c.getId());
+    }
 
     // Internal helper. Returns the log id (for table challengelog) for the given challenge id
     private int getTodaysChallengeValueId(int id) {
