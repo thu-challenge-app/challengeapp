@@ -16,11 +16,20 @@
         android:maxHeight="16dip"
         android:minHeight="16dip" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:text="Meine Challenges"
+        android:textSize="22sp">
+    </TextView>
+
     <ListView
         android:id="@+id/Main_ListView"
         android:layout_width="wrap_content"
-        android:layout_height="492dp"
-        android:layout_marginTop="80dp"
+        android:layout_height="488dp"
+        android:layout_marginTop="100dp"
         android:longClickable="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
