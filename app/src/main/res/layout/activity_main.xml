@@ -7,15 +7,6 @@
     android:longClickable="false"
     tools:context=".MainActivity">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:backgroundTint="@color/design_default_color_primary_dark"
-        android:maxHeight="16dip"
-        android:minHeight="16dip" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -24,6 +15,15 @@
         android:text="Meine Challenges"
         android:textSize="22sp">
     </TextView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:backgroundTint="@color/design_default_color_primary_dark"
+        android:maxHeight="16dip"
+        android:minHeight="16dip" />
 
     <ListView
         android:id="@+id/Main_ListView"
