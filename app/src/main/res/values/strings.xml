@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Startseite</string>
+    <string name="app_name">ChallengeAPP</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Speichern</string>
     <string name ="GraphicActivity">Grafik</string>
