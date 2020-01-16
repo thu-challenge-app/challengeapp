@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(v.getId()== R.id.Main_ListView){
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-            menu.setHeaderTitle("Auswahl Menue");
+            menu.setHeaderTitle("Auswahlmenü");
             String[] menuItems = getResources().getStringArray(R.array.click_menu);
             for(int i = 0; i < menuItems.length; i++){
                 menu.add(Menu.NONE, i, i, menuItems[i]);
