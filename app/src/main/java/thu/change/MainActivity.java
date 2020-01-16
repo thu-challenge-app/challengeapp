@@ -41,6 +41,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     String selectedChallenge;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         final FloatingActionButton addFab =(FloatingActionButton) findViewById(R.id.plusButton);
         final FloatingActionButton firstFab = findViewById(R.id.floatingActionButton3);
         final FloatingActionButton secondFab = findViewById(R.id.floatingActionButton4);
+        final LinearLayout combinedLayout = findViewById(R.id.combinedLayout);
         final LinearLayout firstLayout = findViewById(R.id.firstLayout);
         final LinearLayout secondLayout = findViewById(R.id.secondLayout);
         final TextView firstText = findViewById(R.id.textView);
@@ -65,8 +67,10 @@ public class MainActivity extends AppCompatActivity {
                 if(firstLayout.getVisibility() == View.VISIBLE && secondLayout.getVisibility() == View.VISIBLE){
                     firstLayout.setVisibility(View.GONE);
                     secondLayout.setVisibility(View.GONE);
+                    combinedLayout.setVisibility(View.GONE);
                     firstLayout.startAnimation(hideLayout);
                     secondLayout.startAnimation(hideLayout);
+                    combinedLayout.startAnimation(hideLayout);
                     addFab.startAnimation(hideButton);
                     firstFab.setEnabled(false);
                     secondFab.setEnabled(false);
@@ -75,8 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else{
+                    combinedLayout.setVisibility(View.VISIBLE);
                     firstLayout.setVisibility(View.VISIBLE);
                     secondLayout.setVisibility(View.VISIBLE);
+                    combinedLayout.startAnimation(showLayout);
                     firstLayout.startAnimation(showLayout);
                     secondLayout.startAnimation(showLayout);
                     addFab.startAnimation(showButton);
@@ -92,11 +98,7 @@ public class MainActivity extends AppCompatActivity {
         firstFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstLayout.setVisibility(View.GONE);
-                secondLayout.setVisibility(View.GONE);
-                firstLayout.startAnimation(hideLayout);
-                secondLayout.startAnimation(hideLayout);
-                addFab.startAnimation(hideButton);
+                hide_FloatingButtons();
                 Intent intentcreate = new Intent(MainActivity.this, CreateActivity.class);
                 startActivity(intentcreate);
             }
@@ -104,11 +106,7 @@ public class MainActivity extends AppCompatActivity {
         secondFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstLayout.setVisibility(View.GONE);
-                secondLayout.setVisibility(View.GONE);
-                firstLayout.startAnimation(hideLayout);
-                secondLayout.startAnimation(hideLayout);
-                addFab.startAnimation(hideButton);
+                hide_FloatingButtons();
                 Intent intentchoose = new Intent(MainActivity.this, ChooseActivity.class);
                 startActivity(intentchoose);
             }
@@ -116,11 +114,7 @@ public class MainActivity extends AppCompatActivity {
         firstText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstLayout.setVisibility(View.GONE);
-                secondLayout.setVisibility(View.GONE);
-                firstLayout.startAnimation(hideLayout);
-                secondLayout.startAnimation(hideLayout);
-                addFab.startAnimation(hideButton);
+                hide_FloatingButtons();
                 Intent intentchoose = new Intent(MainActivity.this, ChooseActivity.class);
                 startActivity(intentchoose);
             }
@@ -128,15 +122,26 @@ public class MainActivity extends AppCompatActivity {
         secondText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firstLayout.setVisibility(View.GONE);
-                secondLayout.setVisibility(View.GONE);
-                firstLayout.startAnimation(hideLayout);
-                secondLayout.startAnimation(hideLayout);
-                addFab.startAnimation(hideButton);
+                hide_FloatingButtons();
                 Intent intentchoose = new Intent(MainActivity.this, ChooseActivity.class);
                 startActivity(intentchoose);
             }
         });
+    }
+
+    public void hide_FloatingButtons(){
+        final LinearLayout firstLayout = findViewById(R.id.firstLayout);
+        final LinearLayout secondLayout = findViewById(R.id.secondLayout);
+        final Animation hideButton = AnimationUtils.loadAnimation(this, R.anim.hide_button);
+        final Animation hideLayout = AnimationUtils.loadAnimation(this, R.anim.hide_layout);
+        final FloatingActionButton addFab =(FloatingActionButton) findViewById(R.id.plusButton);
+
+        firstLayout.setVisibility(View.GONE);
+        secondLayout.setVisibility(View.GONE);
+        firstLayout.startAnimation(hideLayout);
+        secondLayout.startAnimation(hideLayout);
+        addFab.startAnimation(hideButton);
+
     }
 
     @Override
@@ -244,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView) layout.getChildAt(1);
         //Challenge Id aus Textview Id generieren
         Integer id = textView.getId();
-
+        hide_FloatingButtons();
         Intent intentchoose = new Intent(MainActivity.this, EntryActivity.class);
         intentchoose.putExtra("Challenge_id",id);
         startActivity(intentchoose);
@@ -258,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView) layout.getChildAt(1);
         //Challenge Id aus Textview Id generieren
         Integer id = textView.getId();
-
+        hide_FloatingButtons();
         Intent intentchoose = new Intent(MainActivity.this, GraphicActivity.class);
         intentchoose.putExtra("Challenge_id", id);
         startActivity(intentchoose);

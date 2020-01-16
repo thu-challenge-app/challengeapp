@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Challenge</string>
+    <string name="app_name">Startseite</string>
     <string name="action_settings">Settings</string>
     <string name="action_save">Speichern</string>
-
+    <string name ="GraphicActivity">Grafik</string>
+    <string name ="EntryActivity">Eintragen</string>
+    <string name ="CreateActivity">Challenge erstellen</string>
+    <string name ="ChooseActivity">Challenge auswählen</string>
     <string name="create_title">Erstelle deine eigene Challenge</string>
     <string name="create_challenge">Challenge</string>
     <string name="create_frequency">Wie oft soll die Challenge erfüllt werden?</string>

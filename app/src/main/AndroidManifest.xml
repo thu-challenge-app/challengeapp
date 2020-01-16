@@ -9,10 +9,18 @@
         android:roundIcon="@mipmap/challenge_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GraphicActivity"></activity>
-        <activity android:name=".EntryActivity" />
-        <activity android:name=".CreateActivity" />
-        <activity android:name=".ChooseActivity" />
+        <activity android:name=".GraphicActivity"
+            android:label="@string/GraphicActivity"
+            android:theme="@style/AppTheme.DarkActionBar"/>
+        <activity android:name=".EntryActivity"
+            android:label="@string/EntryActivity"
+            android:theme="@style/AppTheme.DarkActionBar"/>
+        <activity android:name=".CreateActivity"
+            android:label="@string/CreateActivity"
+            android:theme="@style/AppTheme.DarkActionBar"/>
+        <activity android:name=".ChooseActivity"
+            android:label="@string/ChooseActivity"
+            android:theme="@style/AppTheme.DarkActionBar"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

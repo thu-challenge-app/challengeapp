@@ -44,72 +44,84 @@
         android:clickable="true"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
-
     <LinearLayout
-        android:id="@+id/firstLayout"
+        android:id="@+id/combinedLayout"
+        android:background="@color/colorButtontext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginBottom="100dp"
-        android:orientation="horizontal"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="180dp"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/textView"
-            style="@style/TextAppearance.AppCompat.Title"
+
+        <LinearLayout
+            android:id="@+id/firstLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_gravity="top|end"
+            android:layout_marginLeft="18dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:clickable="false"
-            android:text="Auswählen" />
+            android:layout_marginBottom="18dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton4"
+            <TextView
+                android:id="@+id/textView"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:clickable="false"
+                android:text="Auswählen" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                app:backgroundTint="@color/colorFloatButton"
+                app:fabSize="mini"
+                app:srcCompat="@android:drawable/ic_menu_view" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/secondLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:backgroundTint="@color/colorFloatButton"
-            android:clickable="false"
-            app:fabSize="mini"
-            app:srcCompat="@android:drawable/ic_menu_view" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/secondLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginBottom="160dp"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/textView2"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginLeft="18dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:clickable="false"
-            android:text="Erstellen" />
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:backgroundTint="@color/colorFloatButton"
-            android:clickable="false"
-            app:fabSize="mini"
-            app:srcCompat="@android:drawable/ic_menu_add" />
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:clickable="false"
+                android:text="Erstellen" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                app:backgroundTint="@color/colorFloatButton"
+                app:fabSize="mini"
+                app:srcCompat="@android:drawable/ic_menu_add" />
 
 
+        </LinearLayout>
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
