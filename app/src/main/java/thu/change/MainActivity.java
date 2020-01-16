@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
@@ -28,6 +29,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -291,8 +293,12 @@ public class MainActivity extends AppCompatActivity {
             convertView = inflater.inflate(mResource, parent, false);
 
             TextView challenge_text = (TextView) convertView.findViewById(R.id.textView3);
+            Button edit_button = (Button)convertView.findViewById(R.id.button);
 
-
+            // Set the "checked edit icon" if todays value is set
+            DatabaseHelper db = new DatabaseHelper(MainActivity.this);
+            if (db.isTodaysChallengeValueSet(id))
+                edit_button.setForeground(AppCompatResources.getDrawable(MainActivity.this, R.drawable.edit_icon_check));
 
             challenge_text.setText(text);
             challenge_text.setId(id);

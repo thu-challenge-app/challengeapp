@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg1"
+   sodipodi:docname="diagram-icon.svg"
+   viewBox="0 0 53.206375 53.484909"
+   sodipodi:version="0.32"
+   version="1.0"
+   y="0"
+   x="0"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="53.206375"
+   height="53.484909">
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     pagecolor="#ffffff"
+     inkscape:zoom="4.9119411"
+     inkscape:window-x="61"
+     borderopacity="1.0"
+     inkscape:cx="-6.961854"
+     inkscape:cy="23.03392"
+     inkscape:window-y="93"
+     inkscape:window-height="685"
+     inkscape:pageopacity="0"
+     showgrid="false"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1"
+     inkscape:pagecheckerboard="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <path
+     id="path829"
+     sodipodi:nodetypes="cccc"
+     style="fill:none;stroke:#f0f2f0;stroke-width:3.125;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3.125, 3.125;stroke-opacity:1"
+     d="m 2.8266661,9.906333 14.9349999,17.815 17.635,-2.34 13.316,17.455"
+     sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.50000000)"
+     inkscape:connector-curvature="0" />
+  <path
+     id="path917"
+     style="fill:none;stroke:#f0f2f0;stroke-width:4.99995899;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+     d="M 2.5002295,2.5355854 V 50.984679 H 50.670791"
+     sodipodi:nodetypes="ccc"
+     sodipodi:stroke-cmyk="(0.0000000 0.0000000 0.0000000 0.80000001)"
+     inkscape:connector-curvature="0" />
+  <metadata
+     id="metadata6">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>ftlines</dc:title>
+        <dc:date>2011-01-31T02:01:43</dc:date>
+        <dc:description>Originally uploaded by Danny Allen for OCAL 0.18 this icon is part of the flat theme</dc:description>
+        <dc:source>https://openclipart.org/detail/113233/ftlines-by-anonymous</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Anonymous</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>flat</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>theme</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
