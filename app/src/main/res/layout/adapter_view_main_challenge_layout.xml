@@ -2,21 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:weightSum="100">
 
     <TextView
         android:id="@+id/textView_entry"
         android:layout_width="15dp"
         android:layout_height="wrap_content"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="288dp"
+        android:layout_width="242dp"
         android:layout_height="50dp"
         android:longClickable="true"
         android:onClick="onClick_Graphik"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_weight="20"/>
 
     <Button
         android:id="@+id/button_graph"
@@ -25,7 +28,8 @@
         android:layout_marginTop="13dp"
         android:foreground="@drawable/diagram_icon"
         android:foregroundGravity="center"
-        android:onClick="onClick_Graphik" />
+        android:onClick="onClick_Graphik"
+        android:layout_weight="5"/>
 
     <Button
         android:id="@+id/button"
@@ -34,5 +38,6 @@
         android:layout_marginTop="13dp"
         android:foreground="@drawable/edit_icon"
         android:foregroundGravity="center"
-        android:onClick="onClick_Eintragen" />
+        android:onClick="onClick_Eintragen"
+        android:layout_weight="5"/>
 </LinearLayout>

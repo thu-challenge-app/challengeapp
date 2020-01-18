@@ -230,16 +230,19 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.auswahl:
+                hide_FloatingButtons();
                 Intent intentauswahl = new Intent(this, ChooseActivity.class);
                 startActivity(intentauswahl);
                 return true;
             case R.id.erstellen:
+                hide_FloatingButtons();
                 Intent intenterstellen = new Intent(this, CreateActivity.class);
                 startActivity(intenterstellen);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
 
     }
 
