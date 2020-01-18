@@ -42,9 +42,9 @@ public class EntryActivity extends AppCompatActivity {
         else {tdayweek.setText("täglich");}
 
         if (!ch.getUnit().isEmpty() && ch_above==true)
-        {tgoal.setText("Dein Ziel: weniger als " + ch.getMaximum() + " " + ch.getUnit() );}
+        {tgoal.setText("Dein Ziel: "+ ch.getMaximum() + " " + ch.getUnit() + " erreichen oder überschreiten" );}
         if (!ch.getUnit().isEmpty() && ch_above==false)
-        {tgoal.setText("Dein Ziel: mehr als " + ch.getMaximum() + " " + ch.getUnit() );}
+        {tgoal.setText("Dein Ziel: weniger als " + ch.getMaximum() + " " + ch.getUnit() );}
 
         int current_progress = db.getTodaysChallengeValue(id);
 

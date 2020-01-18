@@ -102,7 +102,7 @@ public class CreateActivity extends AppCompatActivity {
             c.setUnit(tEinheit.getText().toString());
 
             // accomplished if below max value
-            boolean above = !sbelow_above.isChecked();
+            boolean above = sbelow_above.isChecked();
 
             // Store average if text box is filled
             if (!tDurchschnitt.getText().toString().isEmpty()) {
@@ -112,7 +112,7 @@ public class CreateActivity extends AppCompatActivity {
             // daily or weekly challenge
             c.setWeekly(sTagWoche.isChecked());
 
-            c.setAbove(false);
+            c.setAbove(true);
 
             if (Skala_2.isChecked()) {
                 c.setMaximum(1);
