@@ -347,10 +347,10 @@ public class MainActivity extends AppCompatActivity {
             Integer target = challenge_progress.get(index).getMaximum();
             // Check auf Min/Max
             boolean above = challenge_progress.get(index).getAbove();
-            if (above == true && value <= target) {
-                progress = (value / (target * challenge_progress.size()));
+            if (above == true && value < target) {
+                progress = ((value / target)*100) / challenge_progress.size();
             }
-            else if(above == true && value > target){
+            else if(above == true && value >= target){
                 progress = 100/(float)challenge_progress.size();
             }
             else {
@@ -358,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
                     progress = 100/(float)challenge_progress.size();
                 }
                 else if(value > target && value < 2*target) {
-                    progress = (100 - (value / target))/challenge_progress.size();
+                    progress = (100-((value - target)/target)*100)/challenge_progress.size();
                 }
                 else{
                     progress = (float)0;
