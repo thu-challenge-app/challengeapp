@@ -34,7 +34,6 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/plusButton"
-        app:backgroundTint="@color/colorFloatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -42,6 +41,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        app:backgroundTint="@color/colorAccent"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <LinearLayout
@@ -95,8 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_marginRight="5dp"
             android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
             android:orientation="horizontal"
             android:visibility="gone">
@@ -109,6 +109,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
+                android:backgroundTint="@color/colorBackground"
                 android:clickable="false"
                 android:text="Erstellen" />
 
