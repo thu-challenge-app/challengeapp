@@ -10,10 +10,10 @@
         android:id="@+id/textView_Erstelle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_title"
         android:gravity="center"
-        android:textSize="22sp"
+        android:text="@string/create_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -254,5 +254,14 @@
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/switch_maxmin"
         app:layout_constraintTop_toTopOf="@+id/switch_maxmin" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Erstelle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

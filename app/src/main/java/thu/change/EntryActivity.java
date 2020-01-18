@@ -24,6 +24,7 @@ public class EntryActivity extends AppCompatActivity {
         TextView tchallenge = (TextView) findViewById(R.id.textView_chosenChallenge);
         TextView tunit = (TextView) findViewById(R.id.textView_unit);
         TextView tgoal = (TextView) findViewById(R.id.textView_goal);
+        TextView tdayweek = (TextView) findViewById(R.id.textView_entrydayweek);
 
         DatabaseHelper db = new DatabaseHelper(this);
 
@@ -31,12 +32,19 @@ public class EntryActivity extends AppCompatActivity {
         int id=myIntent.getIntExtra("Challenge_id",0);
         ch = db.getChallenge(id);
         String ch_name = ch.getName();
+        boolean ch_above = ch.getAbove();
         int ch_skala = ch.getMaximum();
         String ch_unit = ch.getUnit();
         tchallenge.setText(ch.getName());
         tunit.setText(ch.getUnit());
-        if (!ch.getUnit().isEmpty())
-        {tgoal.setText("Dein Ziel: " + ch.getMaximum() + " " + ch.getUnit());}
+        if (ch.getWeekly()== true)
+        {tdayweek.setText("wöchentlich");}
+        else {tdayweek.setText("täglich");}
+
+        if (!ch.getUnit().isEmpty() && ch_above==true)
+        {tgoal.setText("Dein Ziel: weniger als " + ch.getMaximum() + " " + ch.getUnit() );}
+        if (!ch.getUnit().isEmpty() && ch_above==false)
+        {tgoal.setText("Dein Ziel: mehr als " + ch.getMaximum() + " " + ch.getUnit() );}
 
         int current_progress = db.getTodaysChallengeValue(id);
 

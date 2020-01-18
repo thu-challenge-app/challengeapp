@@ -102,15 +102,17 @@ public class CreateActivity extends AppCompatActivity {
             c.setUnit(tEinheit.getText().toString());
 
             // accomplished if below max value
-            boolean above = sbelow_above.isChecked();
+            boolean above = !sbelow_above.isChecked();
 
             // Store average if text box is filled
             if (!tDurchschnitt.getText().toString().isEmpty()) {
                 c.setAverage(Integer.parseInt(tDurchschnitt.getText().toString()));
             }
 
+            // daily or weekly challenge
             c.setWeekly(sTagWoche.isChecked());
-            c.setAbove(true);
+
+            c.setAbove(false);
 
             if (Skala_2.isChecked()) {
                 c.setMaximum(1);
@@ -132,9 +134,7 @@ public class CreateActivity extends AppCompatActivity {
             DatabaseHelper db = new DatabaseHelper(this);
             db.addChallenge(c);
 
-            String skala = String.valueOf(c.getMaximum());
-            String durchschnitt = String.valueOf(c.getAverage());
-            String uebermax = String.valueOf(above);
+
             Toast.makeText(this, "Challenge erfolgreich erstellt", Toast.LENGTH_LONG).show();
             tChallenge.setText("");
             tDurchschnitt.setText("");
