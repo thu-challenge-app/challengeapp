@@ -109,17 +109,16 @@ public class GraphicActivity extends AppCompatActivity {
 
         //PieChart
         PieChart piechart = findViewById(R.id.idPieChart);
-        if (ch.getWeekly() || ch.getAbove())
+        if (ch.getWeekly() || (ch.getAbove() && ch.getMaximum() == 0))
             piechart.setVisibility(View.INVISIBLE);
         else {
             piechart.setUsePercentValues(true);
             Description desc = new Description();
-            desc.setText("");
-            desc.setTextSize(20f);
+            desc.setText("HEUTE");
+            desc.setTextSize(15f);
             piechart.setRotationEnabled(true);
             piechart.setHoleRadius(60f);
             piechart.setTransparentCircleAlpha(0);
-            piechart.setCenterText("HEUTE");
             piechart.setHoleColor(ContextCompat.getColor(this, R.color.colorBackground));
             piechart.setCenterTextSize(10);
             piechart.setDescription(desc);
@@ -130,8 +129,18 @@ public class GraphicActivity extends AppCompatActivity {
                 dayvalue = db.getTodaysChallengeValue(ch);
             if (dayvalue > max)
                 dayvalue = max;
-            value.add(new PieEntry(max - dayvalue, ""));
-            value.add(new PieEntry( dayvalue, ""));
+            int percent;
+            if (!ch.getAbove()) {
+                value.add(new PieEntry(max - dayvalue, ""));
+                value.add(new PieEntry(dayvalue, ""));
+                percent = (dayvalue * 100) / max;
+            }
+            else {
+                value.add(new PieEntry(dayvalue, ""));
+                value.add(new PieEntry(max - dayvalue, ""));
+                percent = ((max - dayvalue) * 100) / max;
+            }
+            piechart.setCenterText(String.valueOf(percent) + "%");
             PieDataSet pieDataSet = new PieDataSet(value, "");
             pieDataSet.setColors(new ArrayList<Integer>(Arrays.asList(ContextCompat.getColor(this, R.color.pieChartGreen), ContextCompat.getColor(this, R.color.pieChartRed))));
             PieData pieData = new PieData(pieDataSet);
