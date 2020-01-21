@@ -5,12 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EntryActivity extends AppCompatActivity {
 
@@ -25,6 +22,7 @@ public class EntryActivity extends AppCompatActivity {
         TextView tunit = (TextView) findViewById(R.id.textView_unit);
         TextView tgoal = (TextView) findViewById(R.id.textView_goal);
         TextView tdayweek = (TextView) findViewById(R.id.textView_entrydayweek);
+        TextView taverage = (TextView) findViewById(R.id.textView_average);
 
         DatabaseHelper db = new DatabaseHelper(this);
 
@@ -38,13 +36,19 @@ public class EntryActivity extends AppCompatActivity {
         tchallenge.setText(ch.getName());
         tunit.setText(ch.getUnit());
         if (ch.getWeekly()== true)
-        {tdayweek.setText("wöchentlich");}
-        else {tdayweek.setText("täglich");}
+        {tdayweek.setText("Diese Challenge machst du wöchentlich");}
+        else {tdayweek.setText("Diese Challenge machst du täglich");}
 
         if (!ch.getUnit().isEmpty() && ch_above==true)
         {tgoal.setText("Dein Ziel: "+ ch.getMaximum() + " " + ch.getUnit() + " erreichen oder überschreiten" );}
         if (!ch.getUnit().isEmpty() && ch_above==false)
         {tgoal.setText("Dein Ziel: weniger als " + ch.getMaximum() + " " + ch.getUnit() );}
+
+        if (ch.getAverage()>0 && !ch.getUnit().isEmpty())
+        {taverage.setText("Der Durchschnittsdeutsche hat in dieser \nChallenge " + ch.getAverage() + " " + ch.getUnit()+".");}
+        else
+        {taverage.setText("");
+        findViewById(R.id.divider4).setVisibility(View.INVISIBLE);}
 
         int current_progress = db.getTodaysChallengeValue(id);
 
