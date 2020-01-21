@@ -45,15 +45,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
         Challenge C1 = new Challenge(0,"Fleischkonsum reduzieren",50,false,90,true, "Gramm", false);
         Challenge C2 = new Challenge(0,"Weniger Autofahren",20,false,38,true,"km", false);
-        Challenge C3 = new Challenge(0,"Keine Plastiktüten nutzen",1,false,0,true,"Stück", false);
-        Challenge C4 = new Challenge(0,"Keine Lebensmittel wegwerfen",4,false,1,true,"", false);
-        Challenge C5 = new Challenge(0,"Kalt duschen",4,true,0,true,"", false);
-        Challenge C6 = new Challenge(0,"Biolebensmittel kaufen",4,false,1,false,"", false);
-        Challenge C7 = new Challenge(0,"Keine Kleidung kaufen",2,true,1,false,"", false);
-        Challenge C8 = new Challenge(0,"Regional einkaufen",2,false,0,false,"", false);
-        Challenge C9 = new Challenge(0,"Werbemails kündigen",4,false,0,false,"", false);
-        Challenge C10 = new Challenge(0,"Handynutzung reduzieren",2,false,2,false,"Stunden", false);
-        Challenge C11 = new Challenge(0,"Regional einkaufen",4,true,0,false,"", false);
+        Challenge C3 = new Challenge(0,"Keine Plastiktüten nutzen",1,false,0,true,"Stück", true);
+        Challenge C4 = new Challenge(0,"Keine Lebensmittel wegwerfen",4,false,1,true,"", true);
+        Challenge C5 = new Challenge(0,"Kalt duschen",4,true,0,true,"", true);
+        Challenge C6 = new Challenge(0,"Biolebensmittel kaufen",4,false,1,false,"", true);
+        Challenge C7 = new Challenge(0,"Keine Kleidung kaufen",2,true,1,false,"", true);
+        Challenge C8 = new Challenge(0,"Regional einkaufen",2,false,0,false,"", true);
+        Challenge C9 = new Challenge(0,"Werbemails kündigen",4,false,0,false,"", true);
+        Challenge C10 = new Challenge(0,"Handynutzung reduzieren",120,false,2,false,"Minuten", false);
+        Challenge C11 = new Challenge(0,"Regional einkaufen",4,true,0,false,"", true);
         //Challenge C13 = new Challenge(0,"",2,false,0,true,"", false);
         // Palmölfreie Woche
         // Müll aufsammeln in der Öffentlichkeit
