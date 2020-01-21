@@ -212,7 +212,9 @@ public class GraphicActivity extends AppCompatActivity {
 
     private void updateGraph() {
         //Werte LineChart
-        ArrayList<Entry> yValues = db.getChallengeValueListBetween(ch, startdate.getTimeInMillis() / 1000L, enddate.getTimeInMillis() / 1000L);
+        long starttime = startdate.getTimeInMillis() / 1000L;
+        long endtime = enddate.getTimeInMillis() / 1000L;
+        ArrayList<Entry> yValues = db.getChallengeValueListBetween(ch, starttime, endtime);
 
         LineDataSet set1 = new LineDataSet(yValues, "");
         set1.setFillAlpha(110);
@@ -225,6 +227,8 @@ public class GraphicActivity extends AppCompatActivity {
         dataSets.add(set1);
         LineData data = new LineData(dataSets);
         mChart.setData(data);
+        mChart.getXAxis().setAxisMinimum(starttime);
+        mChart.getXAxis().setAxisMaximum(endtime);
         mChart.invalidate();
     }
 
