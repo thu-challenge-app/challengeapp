@@ -133,12 +133,12 @@ public class GraphicActivity extends AppCompatActivity {
             if (!ch.getAbove()) {
                 value.add(new PieEntry(max - dayvalue, ""));
                 value.add(new PieEntry(dayvalue, ""));
-                percent = (dayvalue * 100) / max;
+                percent = ((max - dayvalue) * 100) / max;
             }
             else {
                 value.add(new PieEntry(dayvalue, ""));
                 value.add(new PieEntry(max - dayvalue, ""));
-                percent = ((max - dayvalue) * 100) / max;
+                percent = (dayvalue * 100) / max;
             }
             piechart.setCenterText(String.valueOf(percent) + "%");
             PieDataSet pieDataSet = new PieDataSet(value, "");
@@ -231,6 +231,7 @@ public class GraphicActivity extends AppCompatActivity {
         set1.setLineWidth(3f);
         set1.setValueTextSize(15f);
         set1.setValueTextColor(Color.RED);
+        set1.setValueFormatter(new IntValueFormatter());
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
@@ -252,3 +253,9 @@ class MyValueFormatter extends ValueFormatter {
     }
 }
 
+class IntValueFormatter extends ValueFormatter {
+    @Override
+    public String getPointLabel(Entry entry) {
+        return String.valueOf((int)entry.getY());
+    }
+}
