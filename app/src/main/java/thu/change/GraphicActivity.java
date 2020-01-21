@@ -109,17 +109,16 @@ public class GraphicActivity extends AppCompatActivity {
 
         //PieChart
         PieChart piechart = findViewById(R.id.idPieChart);
-        if (ch.getWeekly() || ch.getAbove())
+        if (ch.getWeekly() || (ch.getAbove() && ch.getMaximum() == 0))
             piechart.setVisibility(View.INVISIBLE);
         else {
             piechart.setUsePercentValues(true);
             Description desc = new Description();
-            desc.setText("");
-            desc.setTextSize(20f);
+            desc.setText("HEUTE");
+            desc.setTextSize(15f);
             piechart.setRotationEnabled(true);
             piechart.setHoleRadius(60f);
             piechart.setTransparentCircleAlpha(0);
-            piechart.setCenterText("HEUTE");
             piechart.setHoleColor(ContextCompat.getColor(this, R.color.colorBackground));
             piechart.setCenterTextSize(10);
             piechart.setDescription(desc);
@@ -130,8 +129,18 @@ public class GraphicActivity extends AppCompatActivity {
                 dayvalue = db.getTodaysChallengeValue(ch);
             if (dayvalue > max)
                 dayvalue = max;
-            value.add(new PieEntry(max - dayvalue, ""));
-            value.add(new PieEntry( dayvalue, ""));
+            int percent;
+            if (!ch.getAbove()) {
+                value.add(new PieEntry(max - dayvalue, ""));
+                value.add(new PieEntry(dayvalue, ""));
+                percent = (dayvalue * 100) / max;
+            }
+            else {
+                value.add(new PieEntry(dayvalue, ""));
+                value.add(new PieEntry(max - dayvalue, ""));
+                percent = ((max - dayvalue) * 100) / max;
+            }
+            piechart.setCenterText(String.valueOf(percent) + "%");
             PieDataSet pieDataSet = new PieDataSet(value, "");
             pieDataSet.setColors(new ArrayList<Integer>(Arrays.asList(ContextCompat.getColor(this, R.color.pieChartGreen), ContextCompat.getColor(this, R.color.pieChartRed))));
             PieData pieData = new PieData(pieDataSet);
@@ -212,7 +221,9 @@ public class GraphicActivity extends AppCompatActivity {
 
     private void updateGraph() {
         //Werte LineChart
-        ArrayList<Entry> yValues = db.getChallengeValueListBetween(ch, startdate.getTimeInMillis() / 1000L, enddate.getTimeInMillis() / 1000L);
+        long starttime = startdate.getTimeInMillis() / 1000L;
+        long endtime = enddate.getTimeInMillis() / 1000L;
+        ArrayList<Entry> yValues = db.getChallengeValueListBetween(ch, starttime, endtime);
 
         LineDataSet set1 = new LineDataSet(yValues, "");
         set1.setFillAlpha(110);
@@ -225,6 +236,8 @@ public class GraphicActivity extends AppCompatActivity {
         dataSets.add(set1);
         LineData data = new LineData(dataSets);
         mChart.setData(data);
+        mChart.getXAxis().setAxisMinimum(starttime);
+        mChart.getXAxis().setAxisMaximum(endtime);
         mChart.invalidate();
     }
 
