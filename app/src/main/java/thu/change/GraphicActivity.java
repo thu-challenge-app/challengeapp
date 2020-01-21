@@ -181,7 +181,7 @@ public class GraphicActivity extends AppCompatActivity {
         //legend.setEnabled(false);
         legend.setEnabled(true);
         String legendstring = ch.getName() + " (" + ch.getUnit() + ")";
-        legend.setCustom(new LegendEntry[]{new LegendEntry(legendstring, Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.RED)});
+        legend.setCustom(new LegendEntry[]{new LegendEntry(legendstring, Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.parseColor("#D56214"))});
         legend.setTextSize(15);
         xAxis.setValueFormatter(new MyValueFormatter());
         xAxis.setLabelRotationAngle(45f);
@@ -227,10 +227,10 @@ public class GraphicActivity extends AppCompatActivity {
 
         LineDataSet set1 = new LineDataSet(yValues, "");
         set1.setFillAlpha(110);
-        set1.setColor(Color.RED);
+        set1.setColor(Color.parseColor("#D56214"));
         set1.setLineWidth(3f);
         set1.setValueTextSize(15f);
-        set1.setValueTextColor(Color.RED);
+        set1.setValueTextColor(Color.parseColor("#D56214"));
         set1.setValueFormatter(new IntValueFormatter());
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();

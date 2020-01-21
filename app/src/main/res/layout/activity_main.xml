@@ -10,19 +10,41 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="0dp"
         android:gravity="center"
         android:text="Meine Challenges"
         android:textSize="22sp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:text="0 %"
+        android:textSize="18sp">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:text="100 %"
+        android:textSize="18sp">
     </TextView>
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="40dp"
         android:backgroundTint="@color/design_default_color_primary_dark"
         android:maxHeight="16dip"
+        android:layout_marginTop="40dp"
         android:minHeight="16dip" />
 
     <ListView
@@ -46,7 +68,7 @@
 
     <LinearLayout
         android:id="@+id/combinedLayout"
-        android:background="@color/colorButtontext"
+        android:background="@color/colorBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
