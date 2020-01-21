@@ -145,6 +145,11 @@ public class MainActivity extends AppCompatActivity {
         addFab.startAnimation(hideButton);
 
     }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        hide_FloatingButtons();
+    }
 
     @Override
     protected void onResume() {
