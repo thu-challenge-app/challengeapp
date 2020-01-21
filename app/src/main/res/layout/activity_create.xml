@@ -60,7 +60,7 @@
         android:id="@+id/textView_Durchschnitt"
         android:layout_width="86dp"
         android:layout_height="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="@string/create_meanvalue"
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/editText_Durchschnitt"
@@ -94,6 +94,7 @@
         android:id="@+id/editText_Durchschnitt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Vergleichswert"
@@ -237,8 +238,8 @@
 
     <TextView
         android:id="@+id/textView_belowmax"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="106dp"
+        android:layout_height="37dp"
         android:layout_marginStart="8dp"
         android:text="@string/create_smallerthanmax"
         android:visibility="invisible"

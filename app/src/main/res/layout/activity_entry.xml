@@ -220,31 +220,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="Diese Challenge machst du "
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/textView_chosenChallenge" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_entrydayweek" />
 
     <TextView
         android:id="@+id/textView_entrydayweek"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:inputType="textImeMultiLine"
+        android:text="Diese Challenge machst du "
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView_chosenChallenge" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -265,12 +256,39 @@
 
     <View
         android:id="@+id/divider3"
-        android:layout_width="8dp"
+        android:layout_width="10dp"
         android:layout_height="48dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        android:layout_marginStart="24dp"
+        android:background="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="@+id/textView_entrydayweek" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="10dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="4dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/textView_average"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/textView_average" />
+
+    <TextView
+        android:id="@+id/textView_average"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorAccent"
+        android:inputType="textMultiLine"
+        android:text="TextView"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/button_update" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

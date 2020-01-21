@@ -20,7 +20,7 @@
     <string name="create_unit">Einheit</string>
     <string name="create_meanvalue">Durchschnitt</string>
     <string name="create_greaterthanmax">erreichen und überschreiten</string>
-    <string name="create_smallerthanmax">unterschreiten</string>
+    <string name="create_smallerthanmax">erreichen und unterschreiten</string>
 
     <string name="entry_title">Heutiger Fortschritt</string>
     <string name="entry_progress">Fortschritt</string>
