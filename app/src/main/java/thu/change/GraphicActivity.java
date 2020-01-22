@@ -38,6 +38,8 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -68,6 +70,8 @@ public class GraphicActivity extends AppCompatActivity {
         int id=myIntent.getIntExtra("Challenge_id",0);
         db = new DatabaseHelper(this);
         ch = db.getChallenge(id);
+        TextView tthisChallenge = (TextView) findViewById(R.id.textView_GraphicChallenge);
+        tthisChallenge.setText(ch.getName());
 
         // Textfelder für Datumsanzeige
         dateText_von = findViewById(R.id.date_text_von);
@@ -110,11 +114,13 @@ public class GraphicActivity extends AppCompatActivity {
         //PieChart
         PieChart piechart = findViewById(R.id.idPieChart);
         if (ch.getWeekly() || (ch.getAbove() && ch.getMaximum() == 0))
-            piechart.setVisibility(View.INVISIBLE);
+        {piechart.setVisibility(View.INVISIBLE);
+            findViewById(R.id.divider7).setVisibility(View.VISIBLE);
+            findViewById(R.id.textView_GraphicWeekly).setVisibility(View.VISIBLE);}
         else {
             piechart.setUsePercentValues(true);
             Description desc = new Description();
-            desc.setText("HEUTE");
+            desc.setText("");
             desc.setTextSize(12f);
             piechart.setRotationEnabled(true);
             piechart.setHoleRadius(60f);
@@ -140,7 +146,7 @@ public class GraphicActivity extends AppCompatActivity {
                 value.add(new PieEntry(max - dayvalue, ""));
                 percent = (dayvalue * 100) / max;
             }
-            piechart.setCenterText(String.valueOf(percent) + "%");
+            piechart.setCenterText("Heute\n" + String.valueOf(percent) + " %");
             PieDataSet pieDataSet = new PieDataSet(value, "");
             pieDataSet.setColors(new ArrayList<Integer>(Arrays.asList(ContextCompat.getColor(this, R.color.pieChartGreen), ContextCompat.getColor(this, R.color.pieChartRed))));
             PieData pieData = new PieData(pieDataSet);

@@ -6,47 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".GraphicActivity">
 
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="13dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="24dp"
+        android:background="@color/colorAccent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/idPieChart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Anfang" />
+
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/idPieChart"
         android:layout_width="113dp"
         android:layout_height="102dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></com.github.mikephil.charting.charts.PieChart>
+        app:layout_constraintTop_toBottomOf="@+id/divider5"></com.github.mikephil.charting.charts.PieChart>
 
 
     <Button
         android:id="@+id/Anfang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="124dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
         android:onClick="onClick_Anfang"
         android:text="Anfang"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Ende"
         app:layout_constraintStart_toEndOf="@+id/idPieChart"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_GraphicChallenge" />
 
     <Button
         android:id="@+id/Ende"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:onClick="onClick_Ende"
         android:text="Ende"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Anfang"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/Anfang" />
 
 
     <TextView
         android:id="@+id/date_text_von"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:textColor="#000"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +70,7 @@
         android:id="@+id/date_text_bis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:textColor="#000"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,5 +95,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idPieChart"></com.github.mikephil.charting.charts.LineChart>
+
+    <TextView
+        android:id="@+id/textView_GraphicChallenge"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="Wähle deine Challenges aus"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_GraphicChallenge" />
+
+    <TextView
+        android:id="@+id/textView_GraphicWeekly"
+        android:layout_width="107dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:text="Diese Challenge machst du wöchentlich"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/divider7"
+        app:layout_constraintStart_toEndOf="@+id/divider7"
+        app:layout_constraintTop_toTopOf="@+id/divider7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
