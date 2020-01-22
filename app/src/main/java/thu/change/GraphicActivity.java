@@ -19,7 +19,6 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -109,38 +108,27 @@ public class GraphicActivity extends AppCompatActivity {
 
         //PieChart
         PieChart piechart = findViewById(R.id.idPieChart);
-        if (ch.getWeekly() || (ch.getAbove() && ch.getMaximum() == 0))
+        if (ch.getWeekly() || ch.getAbove())
             piechart.setVisibility(View.INVISIBLE);
         else {
             piechart.setUsePercentValues(true);
             Description desc = new Description();
-            desc.setText("HEUTE");
-            desc.setTextSize(15f);
+            desc.setText("");
+            desc.setTextSize(20f);
             piechart.setRotationEnabled(true);
             piechart.setHoleRadius(60f);
             piechart.setTransparentCircleAlpha(0);
+            piechart.setCenterText("HEUTE");
             piechart.setHoleColor(ContextCompat.getColor(this, R.color.colorBackground));
             piechart.setCenterTextSize(10);
             piechart.setDescription(desc);
             List<PieEntry> value = new ArrayList<>();
             int max = ch.getMaximum();
-            int dayvalue = max;
-            if (db.isTodaysChallengeValueSet(ch))
-                dayvalue = db.getTodaysChallengeValue(ch);
+            int dayvalue = db.getTodaysChallengeValue(ch.getId());
             if (dayvalue > max)
                 dayvalue = max;
-            int percent;
-            if (!ch.getAbove()) {
-                value.add(new PieEntry(max - dayvalue, ""));
-                value.add(new PieEntry(dayvalue, ""));
-                percent = ((max - dayvalue) * 100) / max;
-            }
-            else {
-                value.add(new PieEntry(dayvalue, ""));
-                value.add(new PieEntry(max - dayvalue, ""));
-                percent = (dayvalue * 100) / max;
-            }
-            piechart.setCenterText(String.valueOf(percent) + "%");
+            value.add(new PieEntry(max - dayvalue, ""));
+            value.add(new PieEntry( dayvalue, ""));
             PieDataSet pieDataSet = new PieDataSet(value, "");
             pieDataSet.setColors(new ArrayList<Integer>(Arrays.asList(ContextCompat.getColor(this, R.color.pieChartGreen), ContextCompat.getColor(this, R.color.pieChartRed))));
             PieData pieData = new PieData(pieDataSet);
@@ -170,7 +158,6 @@ public class GraphicActivity extends AppCompatActivity {
         //leftAxis.setAxisMinimum(ch.getAverage());
         leftAxis.enableAxisLineDashedLine(10f, 10f, 0);
         leftAxis.setDrawGridLinesBehindData(true);
-        //leftAxis.set
         mChart.getAxisRight().setEnabled(false);
         mChart.setDescription(null);
 
@@ -178,11 +165,7 @@ public class GraphicActivity extends AppCompatActivity {
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         Legend legend = mChart.getLegend();
-        //legend.setEnabled(false);
         legend.setEnabled(true);
-        String legendstring = ch.getName() + " (" + ch.getUnit() + ")";
-        legend.setCustom(new LegendEntry[]{new LegendEntry(legendstring, Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.parseColor("#D56214"))});
-        legend.setTextSize(15);
         xAxis.setValueFormatter(new MyValueFormatter());
         xAxis.setLabelRotationAngle(45f);
 
@@ -221,24 +204,19 @@ public class GraphicActivity extends AppCompatActivity {
 
     private void updateGraph() {
         //Werte LineChart
-        long starttime = startdate.getTimeInMillis() / 1000L;
-        long endtime = enddate.getTimeInMillis() / 1000L;
-        ArrayList<Entry> yValues = db.getChallengeValueListBetween(ch, starttime, endtime);
+        ArrayList<Entry> yValues = db.getChallengeValueListBetween(startdate.getTimeInMillis() / 1000L, enddate.getTimeInMillis() / 1000L);
 
         LineDataSet set1 = new LineDataSet(yValues, "");
         set1.setFillAlpha(110);
-        set1.setColor(Color.parseColor("#D56214"));
+        set1.setColor(Color.RED);
         set1.setLineWidth(3f);
         set1.setValueTextSize(15f);
-        set1.setValueTextColor(Color.parseColor("#D56214"));
-        set1.setValueFormatter(new IntValueFormatter());
+        set1.setValueTextColor(Color.RED);
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
         LineData data = new LineData(dataSets);
         mChart.setData(data);
-        mChart.getXAxis().setAxisMinimum(starttime);
-        mChart.getXAxis().setAxisMaximum(endtime);
         mChart.invalidate();
     }
 
@@ -253,9 +231,3 @@ class MyValueFormatter extends ValueFormatter {
     }
 }
 
-class IntValueFormatter extends ValueFormatter {
-    @Override
-    public String getPointLabel(Entry entry) {
-        return String.valueOf((int)entry.getY());
-    }
-}
