@@ -49,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Challenge C4 = new Challenge(0,"Keine Lebensmittel wegwerfen",4,false,1,true,"", true);
         Challenge C5 = new Challenge(0,"Kalt duschen",4,true,0,true,"", true);
         Challenge C6 = new Challenge(0,"Biolebensmittel kaufen",4,false,1,false,"", true);
-        Challenge C7 = new Challenge(0,"Keine Kleidung kaufen",2,true,1,false,"", true);
+        Challenge C7 = new Challenge(0,"Keine Kleidung kaufen",2,true,1,false,"", false);
         Challenge C8 = new Challenge(0,"Regional einkaufen",2,false,0,false,"", true);
         Challenge C9 = new Challenge(0,"Werbemails kündigen",4,false,0,false,"", true);
         Challenge C10 = new Challenge(0,"Handynutzung reduzieren",120,false,2,false,"Minuten", false);

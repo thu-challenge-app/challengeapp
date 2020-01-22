@@ -206,7 +206,8 @@ public class MainActivity extends AppCompatActivity {
         int menuItemIndex = item.getItemId();
         DatabaseHelper db = new DatabaseHelper(this);
         //View des hinterlegeten Layout
-        LinearLayout layout = (LinearLayout)((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).targetView;
+        LinearLayout pre_layout = (LinearLayout)((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).targetView;
+        LinearLayout layout = (LinearLayout)pre_layout.getChildAt(0);
         //Textview mit hinterlegeten Id
         TextView textView = (TextView) layout.getChildAt(1);
         //Challenge Id aus Textview Id generieren
@@ -302,12 +303,19 @@ public class MainActivity extends AppCompatActivity {
 
             TextView challenge_text = (TextView) convertView.findViewById(R.id.textView3);
             Button edit_button = (Button)convertView.findViewById(R.id.button);
+            TextView weekly_or_daily = (TextView) convertView.findViewById(R.id.weekly_or_daily);
 
             // Set the "checked edit icon" if todays value is set
             DatabaseHelper db = new DatabaseHelper(MainActivity.this);
             if (db.isTodaysChallengeValueSet(id))
                 edit_button.setForeground(AppCompatResources.getDrawable(MainActivity.this, R.drawable.edit_icon_check));
 
+            if(db.getChallenge(id).getWeekly()){
+                weekly_or_daily.setText("wöchentlich");
+            }
+            else{
+                weekly_or_daily.setText("täglich");
+            }
             challenge_text.setText(text);
             challenge_text.setId(id);
 
