@@ -113,10 +113,17 @@ public class GraphicActivity extends AppCompatActivity {
 
         //PieChart
         PieChart piechart = findViewById(R.id.idPieChart);
+        TextView tweekly = findViewById(R.id.textView_GraphicWeekly);
         if (ch.getWeekly() || (ch.getAbove() && ch.getMaximum() == 0))
         {piechart.setVisibility(View.INVISIBLE);
             findViewById(R.id.divider7).setVisibility(View.VISIBLE);
-            findViewById(R.id.textView_GraphicWeekly).setVisibility(View.VISIBLE);}
+            findViewById(R.id.textView_GraphicWeekly).setVisibility(View.VISIBLE);
+            if (ch.getMaximum() ==  0)
+                tweekly.setText("Du willst\n" + ch.getMaximum() + " " + ch.getUnit() + "\nerreichen");
+            if (ch.getWeekly())
+                tweekly.setText("Diese Challenge\nmachst du\nwöchentlich");
+
+        }
         else {
             piechart.setUsePercentValues(true);
             Description desc = new Description();

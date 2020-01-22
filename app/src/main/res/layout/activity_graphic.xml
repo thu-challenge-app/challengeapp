@@ -121,7 +121,6 @@
         android:layout_width="107dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
-        android:text="Diese Challenge machst du wöchentlich"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/divider7"
         app:layout_constraintStart_toEndOf="@+id/divider7"
