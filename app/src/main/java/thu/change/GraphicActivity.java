@@ -50,6 +50,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GraphicActivity extends AppCompatActivity {
+    private final int MIN_DAYS_IN_GRAPH = 5;
     private Challenge ch;
     private DatabaseHelper db;
     private TextView dateText_von;
@@ -198,7 +199,7 @@ public class GraphicActivity extends AppCompatActivity {
                                            new LegendEntry("Durchschnitt", Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.parseColor("#00FF00"))});
         legend.setTextSize(15);
         xAxis.setValueFormatter(new MyValueFormatter());
-        xAxis.setLabelRotationAngle(45f);
+        xAxis.setLabelRotationAngle(270f);
 
         onSetDate_Start(null, startdate.get(Calendar.YEAR), startdate.get(Calendar.MONTH), startdate.get(Calendar.DAY_OF_MONTH));
         onSetDate_End(null, enddate.get(Calendar.YEAR), enddate.get(Calendar.MONTH), enddate.get(Calendar.DAY_OF_MONTH));
@@ -213,23 +214,33 @@ public class GraphicActivity extends AppCompatActivity {
 
     //Date-Picker
     private void onSetDate_Start(DatePicker view, int year, int month, int dayOfMonth){
-        String date_von = "von: " + dayOfMonth + "."+ (month+1) + "."  + year;
-        dateText_von.setText(date_von);
-
         startdate.set(Calendar.YEAR, year);
         startdate.set(Calendar.MONTH, month);
         startdate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        datepicker_End.getDatePicker().setMinDate(startdate.getTimeInMillis());
+        if (startdate.getTimeInMillis() > datepicker_Start.getDatePicker().getMaxDate())
+            startdate.setTimeInMillis(datepicker_Start.getDatePicker().getMaxDate());
+
+        String date_von = "von: " + startdate.get(Calendar.DAY_OF_MONTH) + "."+ (startdate.get(Calendar.MONTH)+1) + "."  + startdate.get(Calendar.YEAR);
+        dateText_von.setText(date_von);
+
+        datepicker_End.getDatePicker().setMinDate(0);
+        datepicker_End.getDatePicker().setMinDate(startdate.getTimeInMillis() + MIN_DAYS_IN_GRAPH * 24 * 60 * 60 * 1000);
+        datepicker_End.getDatePicker().invalidate();
         updateGraph();
     }
     private void onSetDate_End(DatePicker view, int year, int month, int dayOfMonth){
-        String date_von = "bis: " + dayOfMonth + "."+ (month+1) + "."  + year;
-        dateText_bis.setText(date_von);
-
         enddate.set(Calendar.YEAR, year);
         enddate.set(Calendar.MONTH, month);
         enddate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        datepicker_Start.getDatePicker().setMaxDate(enddate.getTimeInMillis());
+        if (enddate.getTimeInMillis() < datepicker_End.getDatePicker().getMinDate())
+            enddate.setTimeInMillis(datepicker_End.getDatePicker().getMinDate());
+
+        String date_von = "bis: " + enddate.get(Calendar.DAY_OF_MONTH) + "."+ (enddate.get(Calendar.MONTH)+1) + "."  + enddate.get(Calendar.YEAR);
+        dateText_bis.setText(date_von);
+
+        datepicker_Start.getDatePicker().setMaxDate(Long.MAX_VALUE);
+        datepicker_Start.getDatePicker().setMaxDate(enddate.getTimeInMillis() - MIN_DAYS_IN_GRAPH * 24 * 60 * 60 * 1000);
+        datepicker_Start.getDatePicker().invalidate();
         updateGraph();
     }
 
