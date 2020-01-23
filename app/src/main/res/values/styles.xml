@@ -34,4 +34,14 @@
         <item name="android:textColorPrimary">#595959</item>
         <item name="android:colorAccent">#1b5e20</item>
     </style>
+
+    <style name="NonColoringSwitch" parent="Theme.AppCompat.Light">
+        <item name="android:colorControlActivated">#FFFFFF</item>
+        <item name="android:colorForeground">#FFFFFF</item>
+        <item name="android:colorControlNormal">#FFFFFF</item>
+        <item name="android:colorControlHighlight">#FFFFFF</item>
+        <item name="android:colorAccent">#FFFFFF</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
 </resources>
