@@ -147,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Challenge> getAllChallenges() {
         List<Challenge> cs = new LinkedList<Challenge>();
         //build the query
-        String query = "SELECT  * FROM challenges";
+        String query = "SELECT  * FROM challenges ORDER BY name";
         // get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
