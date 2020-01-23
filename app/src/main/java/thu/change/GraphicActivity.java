@@ -153,10 +153,10 @@ public class GraphicActivity extends AppCompatActivity {
 
             // Prozent ausrechnen
             int percent;
-            if (!ch.getAbove())
-                percent = ((max - dayvalue) * 100) / max;
+            if (ch.getAbove())
+                percent = (dayvalue * 100) / max;
             else
-                percent = (dayvalue >= max) ? 100 : 0;
+                percent = (dayvalue >= max) ? 0 : 100;
 
             // Prozent in Pie Chart darstellen
             piechart.setCenterText("Heute\n" + String.valueOf(percent) + " %");
