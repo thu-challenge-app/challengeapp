@@ -143,6 +143,7 @@ public class GraphicActivity extends AppCompatActivity {
             if (dayvalue > max)
                 dayvalue = max;
             int percent;
+
             if (!ch.getAbove()) {
                 value.add(new PieEntry(max - dayvalue, ""));
                 value.add(new PieEntry(dayvalue, ""));
@@ -153,6 +154,13 @@ public class GraphicActivity extends AppCompatActivity {
                 value.add(new PieEntry(max - dayvalue, ""));
                 percent = (dayvalue * 100) / max;
             }
+            if (ch.getAbove())
+                percent = (dayvalue * 100) / max;
+            else
+                percent = (dayvalue >= max) ? 0 : 100;
+
+            // Prozent in Pie Chart darstellen
+
             piechart.setCenterText("Heute\n" + String.valueOf(percent) + " %");
             PieDataSet pieDataSet = new PieDataSet(value, "");
             pieDataSet.setColors(new ArrayList<Integer>(Arrays.asList(ContextCompat.getColor(this, R.color.pieChartGreen), ContextCompat.getColor(this, R.color.pieChartRed))));
