@@ -182,23 +182,11 @@ public class GraphicActivity extends AppCompatActivity {
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(false);
 
-        //Durchschnitt
-        LimitLine upper_limit = new LimitLine(ch.getAverage(), "Durchschnitt");
-        upper_limit.setLineWidth(4f);
-        upper_limit.enableDashedLine(10f,10f,0f);
-        upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-        upper_limit.setTextSize(15f);
         YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.removeAllLimitLines();
-        leftAxis.addLimitLine(upper_limit);
-        //leftAxis.setAxisMaximum(100f);
-        //leftAxis.setAxisMinimum(ch.getAverage());
         leftAxis.enableAxisLineDashedLine(10f, 10f, 0);
         leftAxis.setDrawGridLinesBehindData(true);
-        //leftAxis.set
         mChart.getAxisRight().setEnabled(false);
         mChart.setDescription(null);
-
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -206,7 +194,8 @@ public class GraphicActivity extends AppCompatActivity {
         //legend.setEnabled(false);
         legend.setEnabled(true);
         String legendstring = ch.getName() + " (" + ch.getUnit() + ")";
-        legend.setCustom(new LegendEntry[]{new LegendEntry(legendstring, Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.parseColor("#D56214"))});
+        legend.setCustom(new LegendEntry[]{new LegendEntry(legendstring, Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.parseColor("#D56214")),
+                                           new LegendEntry("Durchschnitt", Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.parseColor("#00FF00"))});
         legend.setTextSize(15);
         xAxis.setValueFormatter(new MyValueFormatter());
         xAxis.setLabelRotationAngle(45f);
@@ -258,8 +247,17 @@ public class GraphicActivity extends AppCompatActivity {
         set1.setValueTextColor(Color.parseColor("#D56214"));
         set1.setValueFormatter(new IntValueFormatter());
 
+        ArrayList<Entry> averageValues = new ArrayList<Entry>();
+        averageValues.add(new Entry(starttime, ch.getAverage()));
+        averageValues.add(new Entry(endtime, ch.getAverage()));
+        LineDataSet set2 = new LineDataSet(averageValues, "");
+        set2.setValueTextSize(0.00001f);
+        set2.setCircleRadius(1f);
+        set2.setColor(Color.parseColor("#00FF00"));
+
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
+        dataSets.add(set2);
         LineData data = new LineData(dataSets);
         mChart.setData(data);
         mChart.getXAxis().setAxisMinimum(starttime);
