@@ -358,6 +358,8 @@ public class MainActivity extends AppCompatActivity {
         for (int index = 0; index < challenge_progress.size(); index++) {
             float value = (float)db.getTodaysChallengeValue(challenge_progress.get(index).getId());
             Integer target = challenge_progress.get(index).getMaximum();
+            //Check auf heute eingetragen
+            boolean today = db.isTodaysChallengeValueSet(challenge_progress.get(index));
             // Check auf Min/Max
             boolean above = challenge_progress.get(index).getAbove();
             if (above == true && value < target) {
@@ -367,10 +369,10 @@ public class MainActivity extends AppCompatActivity {
                 progress = 100/(float)challenge_progress.size();
             }
             else {
-                if(value <= target){
+                if(value <= target && today == true){
                     progress = 100/(float)challenge_progress.size();
                 }
-                else if(value > target && value < 2*target) {
+                else if(value > target && value < 2*target && today == true) {
                     progress = (100-((value - target)/target)*100)/challenge_progress.size();
                 }
                 else{
