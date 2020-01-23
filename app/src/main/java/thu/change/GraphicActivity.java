@@ -145,14 +145,18 @@ public class GraphicActivity extends AppCompatActivity {
             int percent;
 
             if (!ch.getAbove()) {
-                value.add(new PieEntry(max - dayvalue, ""));
-                value.add(new PieEntry(dayvalue, ""));
-                percent = ((max - dayvalue) * 100) / max;
+                if(dayvalue >= max){
+                    value.add(new PieEntry(0, ""));
+                    value.add(new PieEntry(max, ""));
+                }
+                else{
+                    value.add(new PieEntry(100, ""));
+                    value.add(new PieEntry(0, ""));
+                }
             }
             else {
                 value.add(new PieEntry(dayvalue, ""));
                 value.add(new PieEntry(max - dayvalue, ""));
-                percent = (dayvalue * 100) / max;
             }
             if (ch.getAbove())
                 percent = (dayvalue * 100) / max;
