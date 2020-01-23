@@ -135,34 +135,25 @@ public class GraphicActivity extends AppCompatActivity {
             piechart.setHoleColor(ContextCompat.getColor(this, R.color.colorBackground));
             piechart.setCenterTextSize(10);
             piechart.setDescription(desc);
-
+            List<PieEntry> value = new ArrayList<>();
             int max = ch.getMaximum();
-            int dayvalue = db.getTodaysChallengeValue(ch);
-
-            // Wenn kein Wert gesetzt, dann schlechtest möglichen Fall annehmen
-            if (!db.isTodaysChallengeValueSet(ch)) {
-                if (ch.getAbove())
-                    dayvalue = 0;
-                else
-                    dayvalue = max;
-            }
-
-            // Tageswert darf maximal dem Maximalwert entsprechen
+            int dayvalue = max;
+            if (db.isTodaysChallengeValueSet(ch))
+                dayvalue = db.getTodaysChallengeValue(ch);
             if (dayvalue > max)
                 dayvalue = max;
-
-            // Prozent ausrechnen
             int percent;
-            if (!ch.getAbove())
+            if (!ch.getAbove()) {
+                value.add(new PieEntry(max - dayvalue, ""));
+                value.add(new PieEntry(dayvalue, ""));
                 percent = ((max - dayvalue) * 100) / max;
-            else
-                percent = (dayvalue >= max) ? 100 : 0;
-
-            // Prozent in Pie Chart darstellen
+            }
+            else {
+                value.add(new PieEntry(dayvalue, ""));
+                value.add(new PieEntry(max - dayvalue, ""));
+                percent = (dayvalue * 100) / max;
+            }
             piechart.setCenterText("Heute\n" + String.valueOf(percent) + " %");
-            List<PieEntry> value = new ArrayList<>();
-            value.add(new PieEntry(percent, ""));
-            value.add(new PieEntry(100 - percent, ""));
             PieDataSet pieDataSet = new PieDataSet(value, "");
             pieDataSet.setColors(new ArrayList<Integer>(Arrays.asList(ContextCompat.getColor(this, R.color.pieChartGreen), ContextCompat.getColor(this, R.color.pieChartRed))));
             PieData pieData = new PieData(pieDataSet);
