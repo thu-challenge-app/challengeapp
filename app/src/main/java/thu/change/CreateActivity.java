@@ -130,7 +130,7 @@ public class CreateActivity extends AppCompatActivity {
                 }
                 c.setAbove(above);
             }
-
+            c.setActive(true);
             // Save new challenge to database
             DatabaseHelper db = new DatabaseHelper(this);
             db.addChallenge(c);
