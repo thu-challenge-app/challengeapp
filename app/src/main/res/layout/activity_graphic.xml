@@ -19,8 +19,8 @@
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/idPieChart"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"></com.github.mikephil.charting.charts.PieChart>

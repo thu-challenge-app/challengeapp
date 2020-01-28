@@ -115,8 +115,8 @@ public class GraphicActivity extends AppCompatActivity {
         //PieChart
         PieChart piechart = findViewById(R.id.idPieChart);
         TextView tweekly = findViewById(R.id.textView_GraphicWeekly);
-        if (ch.getWeekly() || (ch.getAbove() && ch.getMaximum() == 0))
-        {piechart.setVisibility(View.INVISIBLE);
+        if (ch.getWeekly() || (ch.getAbove() && ch.getMaximum() == 0)) {
+            piechart.setVisibility(View.INVISIBLE);
             findViewById(R.id.divider7).setVisibility(View.VISIBLE);
             findViewById(R.id.textView_GraphicWeekly).setVisibility(View.VISIBLE);
             findViewById(R.id.textView4).setVisibility(View.INVISIBLE);
@@ -124,7 +124,6 @@ public class GraphicActivity extends AppCompatActivity {
                 tweekly.setText("Du willst\n" + ch.getMaximum() + " " + ch.getUnit() + "\nerreichen");
             if (ch.getWeekly())
                 tweekly.setText("Diese Challenge\nmachst du\nwöchentlich");
-
         }
         else {
             piechart.setUsePercentValues(true);
@@ -173,8 +172,6 @@ public class GraphicActivity extends AppCompatActivity {
             PieData pieData = new PieData(pieDataSet);
             piechart.setData(pieData);
             pieData.setDrawValues(false);
-            //pieDataSet.setColor(Color.GREEN);
-            //piechart.animateXY(1400,1400);
             Legend legend1 = piechart.getLegend();
             legend1.setEnabled(false);
         }
@@ -192,15 +189,18 @@ public class GraphicActivity extends AppCompatActivity {
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setValueFormatter(new MyValueFormatter());
+        xAxis.setLabelRotationAngle(270f);
+
         Legend legend = mChart.getLegend();
-        //legend.setEnabled(false);
         legend.setEnabled(true);
-        String legendstring = ch.getName() + " (" + ch.getUnit() + ")";
+        String legendstring = ch.getName();
+        if (!ch.getUnit().isEmpty())
+            legendstring += " (" + ch.getUnit() + ")";
         legend.setCustom(new LegendEntry[]{new LegendEntry(legendstring, Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.parseColor("#D56214")),
                                            new LegendEntry("Durchschnitt", Legend.LegendForm.DEFAULT, 10f, 2f, null, Color.parseColor("#00FF00"))});
         legend.setTextSize(15);
-        xAxis.setValueFormatter(new MyValueFormatter());
-        xAxis.setLabelRotationAngle(270f);
+        legend.setWordWrapEnabled(true);
 
         onSetDate_Start(null, startdate.get(Calendar.YEAR), startdate.get(Calendar.MONTH), startdate.get(Calendar.DAY_OF_MONTH));
         onSetDate_End(null, enddate.get(Calendar.YEAR), enddate.get(Calendar.MONTH), enddate.get(Calendar.DAY_OF_MONTH));
