@@ -58,9 +58,8 @@ public class CreateActivity extends AppCompatActivity {
             tEinheit.setVisibility(View.VISIBLE);
             findViewById(R.id.textView_Maximalwert).setVisibility(View.VISIBLE);
             findViewById(R.id.textView_Durchschnitt).setVisibility(View.VISIBLE);
-            findViewById(R.id.switch_maxmin).setVisibility(View.VISIBLE);
-            findViewById(R.id.textView_abovemax).setVisibility(View.VISIBLE);
-            findViewById(R.id.textView_belowmax).setVisibility(View.VISIBLE);
+            findViewById(R.id.radioButton_above).setVisibility(View.VISIBLE);
+            findViewById(R.id.radioButton_below).setVisibility(View.VISIBLE);
             return;
         } else {
             tMaximum.setVisibility(View.INVISIBLE);
@@ -68,9 +67,8 @@ public class CreateActivity extends AppCompatActivity {
             tEinheit.setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_Maximalwert).setVisibility(View.INVISIBLE);
             findViewById(R.id.textView_Durchschnitt).setVisibility(View.INVISIBLE);
-            findViewById(R.id.switch_maxmin).setVisibility(View.INVISIBLE);
-            findViewById(R.id.textView_abovemax).setVisibility(View.INVISIBLE);
-            findViewById(R.id.textView_belowmax).setVisibility(View.INVISIBLE);
+            findViewById(R.id.radioButton_above).setVisibility(View.INVISIBLE);
+            findViewById(R.id.radioButton_below).setVisibility(View.INVISIBLE);
         }
     }
     public void onClick_Speichern (View view) {
@@ -78,8 +76,11 @@ public class CreateActivity extends AppCompatActivity {
         RadioButton Skala_3 = (RadioButton) findViewById(R.id.radioButton_1bis3);
         RadioButton Skala_5 = (RadioButton) findViewById(R.id.radioButton_Skala);
         RadioButton Skala_Wert = (RadioButton) findViewById(R.id.radioButton_Wert);
-        Switch sTagWoche = (Switch) findViewById(R.id.switch_TagWoche);
-        Switch sbelow_above = (Switch) findViewById(R.id.switch_maxmin);
+        RadioButton daily = (RadioButton) findViewById(R.id.radioButton_daily);
+        RadioButton weekly = (RadioButton) findViewById(R.id.radioButton_weekly);
+        RadioButton rbabove = (RadioButton) findViewById(R.id.radioButton_above);
+        //Switch sTagWoche = (Switch) findViewById(R.id.switch_TagWoche);
+        //Switch sbelow_above = (Switch) findViewById(R.id.switch_maxmin);
 
         if (view.getId() == R.id.button_Speichern) {
             // No further processing if no text is given
@@ -102,7 +103,7 @@ public class CreateActivity extends AppCompatActivity {
             c.setUnit(tEinheit.getText().toString());
 
             // accomplished if below max value
-            boolean above = sbelow_above.isChecked();
+            boolean above = rbabove.isChecked();
 
             // Store average if text box is filled
             if (!tDurchschnitt.getText().toString().isEmpty()) {
@@ -110,7 +111,7 @@ public class CreateActivity extends AppCompatActivity {
             }
 
             // daily or weekly challenge
-            c.setWeekly(sTagWoche.isChecked());
+            c.setWeekly(weekly.isChecked());
 
             c.setAbove(true);
 
@@ -140,7 +141,7 @@ public class CreateActivity extends AppCompatActivity {
             tDurchschnitt.setText("");
             tMaximum.setText("");
             tEinheit.setText("");
-            sbelow_above.setChecked(true);
+
         }
     }
 }

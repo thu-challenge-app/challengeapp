@@ -119,6 +119,7 @@ public class GraphicActivity extends AppCompatActivity {
         {piechart.setVisibility(View.INVISIBLE);
             findViewById(R.id.divider7).setVisibility(View.VISIBLE);
             findViewById(R.id.textView_GraphicWeekly).setVisibility(View.VISIBLE);
+            findViewById(R.id.textView4).setVisibility(View.INVISIBLE);
             if (ch.getMaximum() ==  0)
                 tweekly.setText("Du willst\n" + ch.getMaximum() + " " + ch.getUnit() + "\nerreichen");
             if (ch.getWeekly())
@@ -166,7 +167,7 @@ public class GraphicActivity extends AppCompatActivity {
 
             // Prozent in Pie Chart darstellen
 
-            piechart.setCenterText("Heute\n" + String.valueOf(percent) + " %");
+            piechart.setCenterText("Ziel zu\n" + String.valueOf(percent) + " %\nerreicht");
             PieDataSet pieDataSet = new PieDataSet(value, "");
             pieDataSet.setColors(new ArrayList<Integer>(Arrays.asList(ContextCompat.getColor(this, R.color.pieChartGreen), ContextCompat.getColor(this, R.color.pieChartRed))));
             PieData pieData = new PieData(pieDataSet);

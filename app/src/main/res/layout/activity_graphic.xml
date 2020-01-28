@@ -19,12 +19,11 @@
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/idPieChart"
-        android:layout_width="113dp"
-        android:layout_height="102dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider5"></com.github.mikephil.charting.charts.PieChart>
+        app:layout_constraintTop_toBottomOf="@+id/textView4"></com.github.mikephil.charting.charts.PieChart>
 
 
     <Button
@@ -125,5 +124,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/divider7"
         app:layout_constraintStart_toEndOf="@+id/divider7"
         app:layout_constraintTop_toTopOf="@+id/divider7" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heute"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/idPieChart"
+        app:layout_constraintStart_toStartOf="@+id/idPieChart"
+        app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

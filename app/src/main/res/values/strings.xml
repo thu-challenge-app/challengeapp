@@ -19,11 +19,11 @@
     <string name="create_maximum">Ziel</string>
     <string name="create_unit">Einheit</string>
     <string name="create_meanvalue">Durchschnitt</string>
-    <string name="create_greaterthanmax">erreichen und überschreiten</string>
-    <string name="create_smallerthanmax">erreichen und unterschreiten</string>
+    <string name="create_greaterthanmax">erreichen und\nüberschreiten</string>
+    <string name="create_smallerthanmax">erreichen und\nunterschreiten</string>
 
     <string name="entry_title">Heutiger Fortschritt</string>
-    <string name="entry_progress">Fortschritt</string>
+    <string name="entry_progress">Eintrag</string>
     <string name="entry_accomplished">Hast du die Challenge erreicht?</string>
     <string name="entry_yes">ja</string>
     <string name="entry_no">nein</string>
