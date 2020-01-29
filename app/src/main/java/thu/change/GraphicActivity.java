@@ -249,8 +249,10 @@ public class GraphicActivity extends AppCompatActivity {
         //Werte LineChart
         long starttime = startdate.getTimeInMillis() / 1000L;
         long endtime = enddate.getTimeInMillis() / 1000L;
-        ArrayList<Entry> yValues = db.getChallengeValueListBetween(ch, starttime, endtime);
 
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+
+        ArrayList<Entry> yValues = db.getChallengeValueListBetween(ch, starttime, endtime);
         LineDataSet set1 = new LineDataSet(yValues, "");
         set1.setFillAlpha(110);
         set1.setColor(Color.parseColor("#D56214"));
@@ -258,18 +260,20 @@ public class GraphicActivity extends AppCompatActivity {
         set1.setValueTextSize(15f);
         set1.setValueTextColor(Color.parseColor("#D56214"));
         set1.setValueFormatter(new IntValueFormatter());
-
-        ArrayList<Entry> averageValues = new ArrayList<Entry>();
-        averageValues.add(new Entry(starttime, ch.getAverage()));
-        averageValues.add(new Entry(endtime, ch.getAverage()));
-        LineDataSet set2 = new LineDataSet(averageValues, "");
-        set2.setValueTextSize(0.00001f);
-        set2.setCircleRadius(1f);
-        set2.setColor(Color.parseColor("#00FF00"));
-
-        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
-        dataSets.add(set2);
+
+        // Durchschnitt nur plotten wenn größer Null und wenn eine Einheit festgelegt ist
+        if (!ch.getUnit().isEmpty() && ch.getAverage() > 0) {
+            ArrayList<Entry> averageValues = new ArrayList<Entry>();
+            averageValues.add(new Entry(starttime, ch.getAverage()));
+            averageValues.add(new Entry(endtime, ch.getAverage()));
+            LineDataSet set2 = new LineDataSet(averageValues, "");
+            set2.setValueTextSize(0.00001f);
+            set2.setCircleRadius(1f);
+            set2.setColor(Color.parseColor("#00FF00"));
+            dataSets.add(set2);
+        }
+
         LineData data = new LineData(dataSets);
         mChart.setData(data);
         mChart.getXAxis().setAxisMinimum(starttime);
