@@ -35,20 +35,22 @@ public class EntryActivity extends AppCompatActivity {
         String ch_unit = ch.getUnit();
         tchallenge.setText(ch.getName());
         tunit.setText(ch.getUnit());
-        if (ch.getWeekly()== true)
-        {tdayweek.setText("Diese Challenge machst du wöchentlich");}
-        else {tdayweek.setText("Diese Challenge machst du täglich");}
+        if (ch.getWeekly())
+            tdayweek.setText("Diese Challenge machst du wöchentlich");
+        else
+            tdayweek.setText("Diese Challenge machst du täglich");
 
-        if (!ch.getUnit().isEmpty() && ch_above==true)
-        {tgoal.setText("Dein Ziel: "+ ch.getMaximum() + " " + ch.getUnit() + " erreichen oder überschreiten" );}
-        if (!ch.getUnit().isEmpty() && ch_above==false)
-        {tgoal.setText("Dein Ziel: weniger als " + ch.getMaximum() + " " + ch.getUnit() );}
+        if (!ch.getUnit().isEmpty() && ch_above)
+            tgoal.setText("Dein Ziel: "+ ch.getMaximum() + " " + ch.getUnit() + " erreichen oder überschreiten" );
+        if (!ch.getUnit().isEmpty() && !ch_above)
+            tgoal.setText("Dein Ziel: weniger als " + ch.getMaximum() + " " + ch.getUnit());
 
         if (ch.getAverage()>0 && !ch.getUnit().isEmpty())
-        {taverage.setText("Der Durchschnittsdeutsche hat in dieser \nChallenge " + ch.getAverage() + " " + ch.getUnit()+".");}
-        else
-        {taverage.setText("");
-        findViewById(R.id.divider4).setVisibility(View.INVISIBLE);}
+            taverage.setText("Der Durchschnittsdeutsche hat in dieser \nChallenge " + ch.getAverage() + " " + ch.getUnit()+".");
+        else {
+            taverage.setText("");
+            findViewById(R.id.divider4).setVisibility(View.INVISIBLE);
+        }
 
         int current_progress = db.getTodaysChallengeValue(id);
 
